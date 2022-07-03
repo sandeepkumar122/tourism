@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>my picnic</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="./css/main.css">
+       
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse form-inline" style="display: flex;">
+            <div class="navbar-header">
+                <h1 class="header-brand" style="color:white">my picnic</h1>
+            </div>
+            <div class="search-bar">
+                <ul class="navbar-right">
+                    <li>
+                        <form  class="form-inline">
+                            <input class="form-control mr-sm-2" id="search-field" type="text" >
+                            <input class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+          </nav>
+          <div class="main-content" >
+              <div class="first">
+                <a href="./php/water.php"><img src="./images/Water_park.jpg" class="imag"></a>
+                <h1>Water Park</h1>
+              </div>
+              <div class="first">
+                <a href="./php/theme.php"><img src="./images/theme_park.jpg" class="imag"></a>
+              </div>
+              <div class="first">
+                <a href="./php/educational.php"><img src="./images/Educational_trip.jpg" class="imag"></a>
+              </div>
+              
+          </div>
+          <footer class="page-footer font-small blue pt-4" id="footer">
+
+            <!-- Footer Links -->
+            <div class="container-fluid text-center text-md-left">
+          
+              <!-- Grid row -->
+              <div class="row">
+          
+                <!-- Grid column -->
+                <div class="col-md-6 mt-md-0 mt-3">
+          
+                  <!-- Content -->
+                  <h5 class="text-uppercase">Footer Content</h5>
+                  <p>Here you can use rows and columns to organize your footer content.</p>
+          
+                </div>
+                <!-- Grid column -->
+          
+                <hr class="clearfix w-100 d-md-none pb-3">
+          
+                <!-- Grid column -->
+                <div class="col-md-3 mb-md-0 mb-3">
+          
+                  <!-- Links -->
+                  <h5 class="text-uppercase">Links</h5>
+          
+                  <ul class="list-unstyled">
+                    <li>
+                      <a href="#!">Link 1</a>
+                    </li>
+                    <li>
+                      <a href="#!">Link 2</a>
+                    </li>
+                    <li>
+                      <a href="#!">Link 3</a>
+                    </li>
+                    <li>
+                      <a href="#!">Link 4</a>
+                    </li>
+                  </ul>
+          
+                </div>
+               </div>
+                
+          
+          </footer>
+    </body>
+    <style>
+      .first{
+        position: relative;
+      }
+      .first h1{
+        width: 100%;
+        background-color:rgba(255, 0, 0, 0.5);
+        position: absolute;
+        bottom: 0px;
+        left: 550px;
+      }
+        @media only screen and (max-width: 600px) {
+            #search-field{
+                height:40px;
+                width:250px;
+            }
+        }
+        @media only screen and (max-width: 900px) {
+            #search-field{
+                height:40px;
+                width:250px;
+            }
+           
+        }
+       
+        .imag{
+            height: 300px;
+            width: 900px;
+        }
+        .first{
+            text-align: center;
+            margin-top: 40px;
+        }
+        #footer{
+            margin-top: 20px;
+        }
+    </style>
+</html>
