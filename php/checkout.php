@@ -5,6 +5,7 @@
 <head>
 
 <?php
+require("../header.html");
 $name=$_POST['cust_name'];
 $adult=$_POST['adult'];
 $child=$_POST['child'];
@@ -18,7 +19,8 @@ $child_price=$_POST['child_price'];
 $adult_price=$_POST['adult_price'];
 $total=$child_price*$child+$adult_price*$adult;
 $date_book=$_POST['bookingDate'];
-if(strlen($date_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( strlen($email)) && ( strlen($resort)>0) && ($date_book>=$today_date)){
+print_r($_POST);
+// if(strlen($date_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( strlen($email)) && ( strlen($resort)>0) && ($date_book>=$today_date)){
 ?>
 <div>
 <h1>Please Confirm</h1>
@@ -108,10 +110,10 @@ if(strlen($date_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( str
 
 
 <?php
-}
-else{
-    header("Location:../index.php");
-}
+//}
+// else{
+//     header("Location:../index.php");
+// }
 // if(isset($_POST['bookingDate'])&& strlen($_POST['bookingDate'])>0 ){
    
     
@@ -134,4 +136,6 @@ else{
 // else{
 //     header("Location:../index.html");
 // }
+require("../footer.html");
+
 ?>

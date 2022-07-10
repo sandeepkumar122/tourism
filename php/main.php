@@ -4,8 +4,8 @@
 <head>
 <?php
 require("../header.html");
-include './conn.php';
-// $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
+// include './conn.php';
+ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
 /*
 $pg_query=pg_query($connect,$query);
 $result=pg_fetch($pg_query);
