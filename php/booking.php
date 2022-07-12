@@ -4,7 +4,7 @@ include './conn.php';
 // $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
             $query="select * from customer_book";
             $pg_query=pg_query($connect,$query);
-            $result=pg_fetch_all($pg_query);
+            //$result=pg_fetch_all($pg_query);
         ?>
             <table>
                 <tr>
@@ -19,10 +19,11 @@ include './conn.php';
                     <th>Day Of Booking</th>
                 </tr>
             <?php
-            for($i=0;$i<count($result);$i++){ 
+            while($result=pg_fetch_row($pg_query)){
+            //for($i=0;$i<count($result);$i++){ 
             ?>
                 <tr>
-                <td><?php print_r($result[$i]['id']); ?></td>
+                <td><?php print_r($result[$i]['booking_id']); ?></td>
                 <td><?php print_r($result[$i]['date_of_booking']); ?></td>
                 <td><?php print_r($result[$i]['customer_name']); ?></td>
                 <td><?php print_r($result[$i]['num_adult']); ?></td>
@@ -72,7 +73,7 @@ td,th{
             for($i=0;$i<count($result);$i++){ 
             ?>
                 <tr>
-                <td><?php print_r($result[$i]['id']); ?></td>
+                <td><?php print_r($result[$i]['booking_id']); ?></td>
                 <td><?php print_r($result[$i]['paid']); ?></td>
                 <td><?php print_r($result[$i]['payment_id']); ?></td>
                 <td><?php print_r($result[$i]['date_of_book']); ?></td>
