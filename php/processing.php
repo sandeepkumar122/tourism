@@ -10,7 +10,7 @@
   // $_POST['child']=1;
   // $_POST['adult']=2;
   // $_POST['resort_name']='water kingdom';
-  require("../header.html");
+  require("../header.php");
 // include './conn.php';
 $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
 if(isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isset($_POST['Product_id']) && $_POST['Product_id'] && isset($_POST['email']) && $_POST['email'] && isset($_POST['total_Amount']) && $_POST['total_Amount']){

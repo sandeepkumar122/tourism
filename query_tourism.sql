@@ -39,3 +39,34 @@ create table paid_booking(booking_id varchar(255),name varchar(100),email varcha
              resort_name varchar(255),phone varchar(13),day_of_booking date);
 
 
+
+-- create table park park_theme
+create table park_theme(id int,name varchar(255),dir varchar(200),
+                  child_price int,adult_price int);
+
+-- data into park_theme table
+-- add data to park_theme
+insert into park_theme(id,dir,child_price,adult_price,name) values (11,'../images/theme_park.jpg',600,800,'Imagica');
+insert into park_theme(id,dir,child_price,adult_price,name) values (12,'../images/theme_park.jpg',700,1000,'Mounteria')
+insert into park_theme(id,dir,child_price,adult_price,name) values (13,'../images/theme_park.jpg',700,1000,'Ecelworld')
+
+
+-- create table park educational
+create table educational(id int,name varchar(255),dir varchar(200),
+                  child_price int,adult_price int);
+
+-- data into educational table
+-- add data to educational
+insert into educational(id,dir,child_price,adult_price,name) values (11,'../images/Educational_trip.jpg',600,800,'Imagica');
+insert into educational(id,dir,child_price,adult_price,name) values (12,'../images/Educational_trip.jpg',700,1000,'Mounteria')
+insert into educational(id,dir,child_price,adult_price,name) values (13,'../images/Educational_trip.jpg',700,1000,'Ecelworld')
+
+--    $college_name = mysqli_real_escape_string($conn, $_POST['institute']);
+
+
+-- create user_data to store user uname and password
+
+create table user_data(email varchar(50),phone varchar(13),salt varchar(50),password varchar(255));
+
+-- alter table user_data add column id
+alter table user_data add column ID SERIAL PRIMARY KEY

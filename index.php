@@ -9,7 +9,7 @@
     </head>
     <body>
         <?php
-        require("header.html");
+        require("./header.php");
         ?>
           <div class="main-content" >
               <div class="first">

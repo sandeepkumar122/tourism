@@ -1,5 +1,5 @@
 <?php
-require("../header.html");
+require("../header.php");
 include './conn.php';
 session_start();
 ?>

@@ -5,7 +5,7 @@
 <head>
 
 <?php
-require("../header.html");
+require("../header.php");
 $name=$_POST['cust_name'];
 $adult=$_POST['adult'];
 $child=$_POST['child'];
