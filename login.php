@@ -1,5 +1,5 @@
 <?php
-require("../header.html");
+require("./php/header.php");
 ?>
 <body>
     <div class="booking-part">

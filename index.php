@@ -2,15 +2,15 @@
     <head>
         <title>my picnic</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="./css/main.css">
        
     </head>
     <body>
-        <?php
-        require("./header.php");
-        ?>
+     <?php
+        include("./php/header.php");
+      ?>
           <div class="main-content" >
               <div class="first">
                 <a href="./php/water.php"><img src="./images/water.webp" class="imag"></a>
@@ -48,7 +48,7 @@
               ?>
               
               <hr>
-              
+          </div>
           </div>
         <?php require("footer.html"); 
      

@@ -3,7 +3,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>     
 <head>
 <?php
-require("../header.html");
+require("./header.php");
+session_start();
 // include './conn.php';
  $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
 /*
@@ -70,7 +71,7 @@ https://www.youtube.com/watch?v=CUgvn0U_Qx4
 <html>
    <body> 
       <?php
-      session_start();
+    
          for($i=0;$i<count($result);$i++){
       ?>
     <div class="main-container">

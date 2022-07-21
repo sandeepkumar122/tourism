@@ -10,15 +10,18 @@ if(isset($_POST['login'])){
     $pg_query_uname=pg_query($connect,$query_for_uname);
     $result_uname=pg_fetch_row($pg_query_uname);
     // print_r($result_uname);
-    echo $uname=$result_uname[0];
-    $salt=$result_uname[1];
-    $dbpassword=$result_uname[2];
+     $uname=$result_uname[0];
+     $salt=$result_uname[1];
+     $dbpassword=$result_uname[2];
     // while($row=pg_fetch_all($pg_query_uname)){
     // 
     // }
-   
+//    echo $dbpassword;
+
+//    echo sha1(md5($password) . $salt);
+
     
-    if ($email == $uname && $dbpassword == sha1($password . $salt)) {
+    if ($email == $uname && $dbpassword == sha1(md5($password) . $salt)) {
         $_SESSION['email'] = $email;
         $_SESSION['logged_in'] = 1;
         header('Location: index.php');

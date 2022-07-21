@@ -1,6 +1,6 @@
 <?php
-require("../header.html");
-include './conn.php';
+require("./php/header.php");
+include './php/conn.php';
 ?>
 <body>
     <div class="booking-part">

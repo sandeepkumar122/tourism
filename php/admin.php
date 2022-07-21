@@ -1,5 +1,5 @@
 <?php
-require("../header.php");
+require("./header.php");
 ?>
 <html>
     <head>admin panel</head><br>
