@@ -5,6 +5,10 @@
 <head>
 
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 require("../header.php");
 $name=$_POST['cust_name'];
 $adult=$_POST['adult'];
@@ -35,10 +39,6 @@ print_r($_POST);
 </div>
 <input type="hidden" id="dateBook" value="<?php echo($date_book);?>">
 <?php
-
-    
-    echo "$total";
-    session_start();
  ?>
     <input type="hidden" value="<?php echo($total); ?>" id="data-amount">
     <input type="hidden" value="<?php echo($resort); ?>" id="data-id">
@@ -48,7 +48,7 @@ print_r($_POST);
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
         $('body').on('click', '.buy_now', function(e){
-            alert(<?php echo($date_book);?>);
+           
             var totalAmount = <?php echo($total); ?>;
             var product_id =  <?php echo($resort); ?>;
             var resort_name="<?php echo($resort_name); ?>";

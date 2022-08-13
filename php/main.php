@@ -4,7 +4,10 @@
 <head>
 <?php
 require("./header.php");
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 // include './conn.php';
  $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
 /*

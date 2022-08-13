@@ -10,7 +10,10 @@
 </head>
     <body>
    <?php 
-    session_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
    ?>
         <div class="header12">
             <a href="#default" class="logo">CompanyLogo</a>
