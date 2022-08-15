@@ -37,7 +37,7 @@ if (isset($_POST['register'])) {
     $phone = pg_escape_string($_POST['phone_num']);
     $email = pg_escape_string($_POST['email']);
     $password = pg_escape_string($_POST['password']);
-
+    if(strlen($name)>0 && strlen($phone)>0 && strlen($email)>0 && strlen($password)>0){
     $password = md5($password);
     $salt = sha1(uniqid());
     $password = sha1($password . $salt);
@@ -46,7 +46,10 @@ if (isset($_POST['register'])) {
     $pg_query_uname = pg_query($connect, $query_for_register);
     $url = '../login.php';
     echo "<script LANGUAGE='JavaScript'>alert('Registration successfull please login through your credentials'); window.location.href= '" . $url . "'; </script>";
-    //header('Location: ../login.php');
+  
 
-
+    }else{
+        $url="../register.php";
+        echo "<script LANGUAGE='JavaScript'>alert('Please Enter full details'); window.location.href= '" . $url . "'; </script>";
+    }
 }

@@ -8,7 +8,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 ?>
 
 <head>
-    
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="./asset/css/style.css">
     <link rel="stylesheet" href="./asset/css/boostrap.min.css">
     <script src="./asset/js/min.js"></script>
@@ -19,7 +19,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 </head>
 
 <body>
-    <h2>Login Form</h2>
+ 
     <form action="./php/lg_rg_main.php" method="POST">
         <div class="container">
             <label><b>Name</b></label>
@@ -40,7 +40,11 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
             <label>Confirm Password</label>
             <input type="Password" id="cpassword" name="password">
 
-            <button type="submit" name="register">Register</button>
+            <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LeqEHkgAAAAAIUWCYFLXtWnK7VtOXUqvGq_53sr" required>
+                  </div>
+                  <span id="captcha_error" class="text-danger"></span>
+
+            <button type="submit" id="register" name="register" disabled>Register</button>
             <input type="checkbox" checked="checked"> Remember me
         </div>
 
@@ -54,5 +58,9 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 require("./footer.html");
 
 ?>
-
+<script>
+    function recaptchaCallback() {
+  $('#register').removeAttr('disabled');
+};
+</script>
 <script src="./asset/js/tr.js"></script>

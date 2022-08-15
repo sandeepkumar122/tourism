@@ -23,4 +23,5 @@ $('#cpassword').on("change", function () {
     $("#password").val("");
     $("#cpassword").val("");
   }
-})
+});
+
