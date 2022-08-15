@@ -70,3 +70,5 @@ create table user_data(email varchar(50),phone varchar(13),salt varchar(50),pass
 
 -- alter table user_data add column id
 alter table user_data add column ID SERIAL PRIMARY KEY
+
+alter table user_data add column full_name varchar(255)
