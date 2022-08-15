@@ -8,10 +8,14 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 ?>
 
 <head>
+    
     <link rel="stylesheet" href="./asset/css/style.css">
     <link rel="stylesheet" href="./asset/css/boostrap.min.css">
     <script src="./asset/js/min.js"></script>
-    <script src="./asset/js/tr.js"></script>
+    <script src="./asset/js/jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
 </head>
 
 <body>
@@ -28,13 +32,13 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
             <input type="email" name="email">
 
             <label>Password</label>
-            <input type="Password" name="password">
-            <input type="checkbox" id="show_pass" onclick="show_pass(this)">Show Password
+            <input type="Password" id="password" name="password">
+            <p><input type="checkbox" id="show_pass_check" >Show Password</p> 
             <br>
             <!-- <span class="psw">Forgot <a href="#">Show Password</a></span> -->
 
             <label>Confirm Password</label>
-            <input type="Password" name="password">
+            <input type="Password" id="cpassword" name="password">
 
             <button type="submit" name="register">Register</button>
             <input type="checkbox" checked="checked"> Remember me
@@ -50,3 +54,5 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 require("./footer.html");
 
 ?>
+
+<script src="./asset/js/tr.js"></script>
