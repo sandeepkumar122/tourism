@@ -1,7 +1,7 @@
 <?php
-require("../header.php");
+require("./header.php");
 include './conn.php';
-session_start();
+
 ?>
 <div class="main-container">
    <div>

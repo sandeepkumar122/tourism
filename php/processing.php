@@ -47,35 +47,11 @@ if(isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isse
 	$date=(array)$date;
 	$date_of_book=$date['date'];
    $_SESSION['date_of_book']=$date_of_book;
-   //$booking_id=1;
-  //  echo "$date_of_book";
-//   $booking=rand(10,10000000)."".rand(10,10000000);
-//    $booking_id=validate_booking($booking);
-   // if(!$check){
-   //    $booking_id=rand(10,10000000)."".rand(10,10000000);
-   // }
-
-   // create table paid_booking(
-   //    booking_id int PRIMARY KEY,
-   //    name varchar(200),
-   //    email varchar(40),
-   //    paid boolean,
-   //    payment_id varchar(255),
-     
-   //    amount int
-   //    resort_id int,
-   //    date_of_book date,
-
-   //    num_adult int,
-   //    num_child int,
-   //    resort_name varchar(255),
-   //    phone varchar(15),
-      
-   //    day_of_booking date,
+ 
       
       
   
- echo  $query="insert into paid_booking(booking_id,name,email,paid,payment_id,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking) 
+   $query="insert into paid_booking(booking_id,name,email,paid,payment_id,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking) 
    values('$booking_id','$name','$email',True,'$payment_id',$amount,$product_id,'$date_of_book',$adult,$child,'$resort_name',$phone,now())"; 
    $pg_query=pg_query($connect,$query); 
    
@@ -89,22 +65,5 @@ if(isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isse
   else{
    header("Location:../index.php");
   }
-//  else{
-//     echo json_encode(array('success' => 0));
-//  }
 
-//  function validateBooking(,$connect,$num){
-//       $query="select booking_id from paid_booking where booking_id=$num";
-//       $pg_query=pg_query($connect,$query); 
-//       if(pg_num_rows($pg_query)>0){
-//          $id=generate_id();
-//          validateBooking($id);
-//       }else{
-//          return $num;
-//       }
-//  }
-//  function generate_id(){
-//    $booking_id=rand(10,10000000)."".rand(10,10000000);
-//    return $booking_id;
-//  }
  ?>

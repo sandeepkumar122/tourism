@@ -77,8 +77,9 @@ print_r($_POST);
                 }, 
                 success: function (msg) {
                     alert("from success ");
-                    console.log(msg);
-                    //var jsonData = json_decode(msg);
+                    alert(msg);
+                    var msg = json_decode(msg);
+                    alert(jsonData);
                     if(msg.success=="1"){
                    
                         alert("from inside successs");
