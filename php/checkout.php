@@ -10,6 +10,11 @@ if(!isset($_SESSION))
     session_start(); 
 } 
 require("../header.php");
+
+if(!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])){
+    header('Location: ../register.php');
+}
+
 $name=$_POST['cust_name'];
 $adult=$_POST['adult'];
 $child=$_POST['child'];
