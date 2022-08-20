@@ -5,7 +5,7 @@
 require("./header.php");
 
 if(!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])){
-    header('Location: ../register.php');
+    header('Location: ../login.php');
 }
 
 

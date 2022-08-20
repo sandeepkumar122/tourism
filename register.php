@@ -26,10 +26,10 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
             <input type="text" placeholder="Enter Username" name="full_name">
 
             <label><b>Phone Number</b></label>
-            <input type="number" placeholder="Enter Phone Number" name="phone_num">
+            <input type="number" maxlength="10" placeholder="Enter Phone Number" name="phone_num">
 
             <label>Email(As Username)</label>
-            <input type="email" name="email">
+            <input type="email" name="email" id="email">
 
             <label>Password</label>
             <input type="Password" id="password" name="password">

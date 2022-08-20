@@ -81,18 +81,19 @@ print_r($_POST);
                 razorpay_payment_id: response.razorpay_payment_id , total_Amount : totalAmount ,Product_id : product_id , email:email_id, dateOfBook:date_of_book,customer_name:name,phone:phone,child:child,adult:adult,resort_name:resort_name
                 }, 
                 success: function (msg) {
-                    alert("from success ");
-                    alert(msg);
-                    var msg = json_decode(msg);
-                    alert(jsonData);
+                    // alert("from success ");
+                    // alert(msg);
+                    
+                    //var msg = jQuery.parseJSON(msg);
+                    // alert(msg.success);
                     if(msg.success=="1"){
                    
-                        alert("from inside successs");
+                        // alert("from inside successs");
                         window.location.href = 'thank-you.php';                                                                                                                                                    
                     }else{
-                        alert("error");
+                        alert("error"); 
                     }
-                    alert("from ajax");
+                    // alert("from ajax");
                     console.log(msg);
                     
                 },

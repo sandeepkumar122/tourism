@@ -10,7 +10,7 @@
 //   $_POST['child']=1;
 //   $_POST['adult']=2;
 //   $_POST['resort_name']='water kingdom';
-  require("../header.php");
+//   require("../header.php");
 // include './conn.php';
 if(!isset($_SESSION)) 
 { 
@@ -48,9 +48,7 @@ if(isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isse
 	$date_of_book=$date['date'];
    $_SESSION['date_of_book']=$date_of_book;
  
-      
-      
-  
+
    $query="insert into paid_booking(booking_id,name,email,paid,payment_id,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking) 
    values('$booking_id','$name','$email',True,'$payment_id',$amount,$product_id,'$date_of_book',$adult,$child,'$resort_name',$phone,now())"; 
    $pg_query=pg_query($connect,$query); 

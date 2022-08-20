@@ -1,4 +1,4 @@
-<script src="../asset/js/min.js"></script>
+
 
 $('#show_pass_check').on("change", function () {
   var y = document.getElementById("password");
