@@ -118,7 +118,7 @@ if(isset($_POST['email']) && $_POST['email'] && isset($_POST['password']) && $_P
         <div class="container" style="background-color:#f1f1f1">
         <span class="psw">Forgot <a href="#">password?</a></span>
         <span class="psw">&nbsp; &nbsp;</span>
-            <span class="psw">Don't Have Account <a href="#">Register Here</a></span>
+            <span class="psw">Don't Have Account <a href="./register.php">Register Here</a></span>
         </div>
     </form>
     

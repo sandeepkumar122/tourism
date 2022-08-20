@@ -50,7 +50,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['logged_in'])) {
 
         <div class="container" style="background-color:#f1f1f1">
 
-            <span class="psw">Forgot <a href="#">password?</a></span>
+            <span class="psw">Forgot <a href="./register.php">password?</a></span>
         </div>
     </form>
 </body>
