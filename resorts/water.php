@@ -1,11 +1,13 @@
 <?php
-require("../header.php");
+require("./header.php");
 include './conn.php';
-// $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
-$query="select * from educational";
+$connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
+$query="select * from park";
 $pg_query=pg_query($connect,$query);
 $result=pg_fetch_all($pg_query);
-
+?>
+<table>
+<?php
 for($i=0;$i<count($result);$i++){ 
     
     /*$name=$result[$i]['name'];
@@ -13,13 +15,15 @@ for($i=0;$i<count($result);$i++){
     $pname = preg_replace('/\s+/', '_',$name);*/
     
 ?>
+
+    
+<tr>
 <div class="main-container">
     <div class="sub-container">
         <a href="main.php?id=<?php print_r($result[$i]['id']); ?>">
             
             <img src=<?php print_r($result[$i]['dir']); ?> class="image-11">
         </a>
-        
     </div>
     
     <div class="info-11">
@@ -34,12 +38,13 @@ for($i=0;$i<count($result);$i++){
         </form> -->
     </div>  
 </div>
+</tr>
 <hr>
 <?php
 }
 require("../footer.html");
 ?>
-
+</table>
 <style>
     body{
         background-color:#e6e6ff;

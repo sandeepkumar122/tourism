@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../asset/css/style.css">
     <link rel="stylesheet" href="../asset/css/boostrap.min.css">
     <script src="../asset/js/min.js"></script>  
-  
+    <script src="../asset/js/tr.js"></script>
 </head>
     <body>
    <?php 
@@ -22,8 +22,8 @@
               <a href="./logout.php">Logout</a>
            
             <?php }else{ ?>
-              <a href="./login.php">Login</a>
-              <a href="./register.php">Register</a>
+              <a href="./../login.php">Login</a>
+              <a href="./../register.php">Register</a>
         <?php    } ?>
         </div>
           </div>

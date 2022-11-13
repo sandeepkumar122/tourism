@@ -1,8 +1,8 @@
 <?php
 require("./header.php");
 include './conn.php';
-$connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
-$query="select * from park";
+// $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
+$query="select * from educational";
 $pg_query=pg_query($connect,$query);
 $result=pg_fetch_all($pg_query);
 

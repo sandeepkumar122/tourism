@@ -60,7 +60,31 @@ if(isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isse
       echo json_encode(array('success' => 0));
    }
   }
+  else if(isset($_POST['paid']) && $_POST['paid']){
+   $product_id1=$_POST['resort_id'];
+   $email1=$_POST['email'];
+   $amount1=$_POST['total'];
+   $booking_id1 = "BOOK" . time();
+   $name1=$_POST['customer'];
+   $phone1=$_POST['phone'];
+   $child1=$_POST['child'];
+   $adult1=$_POST['adult'];
+   $resort_name1=$_POST['resort_name'];
+   $date_of_book1=$_POST['bookingDate'];
+   $paid1=$_POST['paid'];
+
+   $insert_query_unpaid="insert into paid_booking(booking_id,name,email,paid,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking) 
+   values('$booking_id1','$name1','$email1',False,$amount1,$product_id1,'$date_of_book1',$adult1,$child1,'$resort_name1',$phone1,now())"; 
+   $pg_query=pg_query($connect,$insert_query_unpaid); 
+   if($pg_query){
+      echo json_encode(array('success' => 1));
+   }
+   else{
+      echo json_encode(array('success' => 0));
+   }
+  }
   else{
+ 
    header("Location:../index.php");
   }
 

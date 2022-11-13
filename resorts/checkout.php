@@ -9,7 +9,7 @@ if(!isset($_SESSION))
 { 
     session_start(); 
 } 
-require("../header.php");
+require("./header.php");
 
 if(!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])){
     header('Location: ../register.php');
@@ -28,28 +28,51 @@ $child_price=$_POST['child_price'];
 $adult_price=$_POST['adult_price'];
 $total=$child_price*$child+$adult_price*$adult;
 $date_book=$_POST['bookingDate'];
-print_r($_POST);
+// print_r($_POST);
 // if(strlen($date_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( strlen($email)) && ( strlen($resort)>0) && ($date_book>=$today_date)){
 ?>
+
 <div>
-<h1>Please Confirm</h1>
+<div class="card" style="text-align:center ;">
+<div class="card-header">
+    <h1>Please Confirm...</h1>
+  </div>
+<div class="card-body" style="background-color: #32bd27 ;color:white">
+
 <h3>Name: <?php print_r($_POST['cust_name']); ?> </h3>
 <h3>Park Name: <?php print_r($_POST['resort_name']); ?><h3>
 <h3>Number Of Children: <?php print_r($_POST['child']); ?> </h3>
 <h3>Number Of Adult: <?php print_r($_POST['adult']); ?> </h3>
 <h3>Email: <?php print_r($_POST['email']); ?> </h3>
-<h3>Amount: <?php echo($total); ?> </h3>
+<h3>Amount: ₹ <?php echo($total); ?> </h3>
 <h3>Date Of Booking: <?php print_r($_POST['bookingDate']); ?> </h3>
 <h3>Phone: <?php print_r($_POST['phone']); ?> </h3>
+<a href="javascript:void(0)" class="btn btn-sm btn-primary buy_now">Pay Now</a> 
+
+</div>
+</div>
+
+<form method="post" action="processing.php">
+    <input type="text" hidden name="customer" value="<?php print_r($_POST['cust_name']); ?>">
+    <input type="text" hidden name="resort_id" value="<?php print_r($resort); ?>">
+    <input type="text" hidden name="resort_name" value="<?php print_r($_POST['resort_name']); ?>">
+    <input type="text" hidden name="child" value="<?php print_r($_POST['child']); ?>">
+    <input type="text" hidden name="adult" value="<?php print_r($_POST['adult']); ?>">
+    <input type="text" hidden name="email" value="<?php print_r($_POST['email']); ?>">
+    <input type="text" hidden name="total" value="<?php print_r($total); ?>">
+    <input type="text" hidden name="bookingDate" value="<?php print_r($_POST['bookingDate']); ?>">
+    <input type="text" hidden name="phone" value="<?php print_r($_POST['phone']); ?>">
+    <input type="text" hidden name="paid" value="no">
+    <input type="submit" class="btn btn-sm btn-secondary" value="Pay Later">
+</form>
 </div>
 <input type="hidden" id="dateBook" value="<?php echo($date_book);?>">
 <?php
  ?>
     <input type="hidden" value="<?php echo($total); ?>" id="data-amount">
     <input type="hidden" value="<?php echo($resort); ?>" id="data-id">
-    <a href="javascript:void(0)" class="btn btn-sm btn-primary buy_now">Pay Now</a> 
-
-    <button type="button" data-id="<?php echo($resort); ?>" data-amount="<?php echo($total); ?>" id="buy_now">Pay Now</button>
+ 
+    <!-- <button type="button" data-id="<?php echo($resort); ?>" data-amount="<?php echo($total); ?>" id="buy_now">Pay Now</button> -->
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
         $('body').on('click', '.buy_now', function(e){
@@ -63,7 +86,7 @@ print_r($_POST);
             var phone="<?php echo($phone); ?>";
             var child=<?php echo($child); ?>;
             var adult=<?php echo($adult); ?>;
-            alert(date_of_book);
+           
             var options = {
             "key": "rzp_test_ndjLGQvKyoEZCo",
             "amount": totalAmount*100, 
@@ -71,7 +94,7 @@ print_r($_POST);
             "description": "Payment",
             "image": "",
             "handler": function (response){
-                alert("working");
+              
                 console.log(response);
                 $.ajax({
                 url: 'processing.php',

@@ -1,4 +1,5 @@
 
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 $('#show_pass_check').on("change", function () {
   var y = document.getElementById("password");
@@ -25,6 +26,15 @@ $('#cpassword').on("change", function () {
     $("#cpassword").val("");
   }
 });
+$('#bookingDate').on("change", function () {
+  alert("working")
+  // $('#bookingDate').on("change",function(){
+//   // alert("working");
+//   alert(this.val)
+//   var d = new Date();
+// })
+});
+
 
 $(document).ready(function () {
   function getISODate() {
@@ -34,6 +44,15 @@ $(document).ready(function () {
       ('0' + d.getDate()).slice(-2);
   }
   $('#bookingDate').prop('min', getISODate());
-
 });
+
+function bookingDateFunc(txt){
+  alert("working")
+  // var today=new Date();
+  // var enterDate=txt.val();
+  // if(enterDate<today){
+  //     alert("Date cannot be less then today");
+  //     $("#bookingDate").val="";
+  // }
+}
 

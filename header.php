@@ -2,7 +2,8 @@
     <head>
     <link rel="stylesheet" href="./asset/css/style.css">
     <link rel="stylesheet" href="./asset/css/boostrap.min.css">
-    <script src="../asset/js/min.js"></script>   
+    <script src="./asset/js/min.js"></script>  
+    <script src="./assets/js/tr.js"></script> 
 </head>
     <body>
    <?php 

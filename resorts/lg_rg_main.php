@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $email = pg_escape_string($_POST['uname']);
     $password = pg_escape_string($_POST['psw']);
 
-    echo $query_for_uname = "select full_name,email,salt,password from user_data where email='$email'";
+     $query_for_uname = "select full_name,email,salt,password from user_data where email='$email'";
     $pg_query_uname = pg_query($connect, $query_for_uname);
     if (pg_num_rows($pg_query_uname) > 0) {
         $result_uname = pg_fetch_row($pg_query_uname);
@@ -41,15 +41,21 @@ if (isset($_POST['register'])) {
     $password = md5($password);
     $salt = sha1(uniqid());
     $password = sha1($password . $salt);
-
+    $query_for_select="select * from user_data where email='$email'";
+    $pg_query_select=pg_query($connect,$query_for_select);
+  
+    if(pg_num_rows($pg_query_select)>0){
+        $url = '../register.php';
+        echo "<script LANGUAGE='JavaScript'>alert('Email Alredy exist'); window.location.href= '" . $url . "'; </script>";
+        exit();
+    }
     $query_for_register = "insert into user_data(full_name,email,phone,salt,password) values ('$name','$email','$phone','$salt','$password')";
     $pg_query_uname = pg_query($connect, $query_for_register);
     $url = '../login.php';
     echo "<script LANGUAGE='JavaScript'>alert('Registration successfull please login through your credentials'); window.location.href= '" . $url . "'; </script>";
-  
-
     }else{
         $url="../register.php";
         echo "<script LANGUAGE='JavaScript'>alert('Please Enter full details'); window.location.href= '" . $url . "'; </script>";
+        exit();
     }
 }

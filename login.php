@@ -101,7 +101,7 @@ if(isset($_POST['email']) && $_POST['email'] && isset($_POST['password']) && $_P
  
     <h2>Login Form</h2>
     <!--Step 1 : Adding HTML-->
-    <form action="./php/lg_rg_main.php" method="POST">
+    <form action="./resorts/lg_rg_main.php" method="POST">
       
  
         <div class="container">

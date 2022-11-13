@@ -113,6 +113,7 @@ body {
  border: 1px solid #ccc;
  border-radius: 4px;
  box-sizing: border-box;
+
 }
 body{
  background-color: #f2f2f2;
@@ -184,7 +185,7 @@ form {
 /*assign full width inputs*/
  
 input[type=text],input[type=email],input[type=number],
-input[type=password] {
+input[type=password],input[type=date],input[type=phone] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
