@@ -25,10 +25,12 @@ if (isset($_POST['login'])) {
         else{
             $url = '../login.php';
             echo "<script LANGUAGE='JavaScript'>alert('Incorrect Password please check password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
         }
     }else{
         $url = '../login.php';
         echo "<script LANGUAGE='JavaScript'>alert('User Not Exit please check email!!'); window.location.href= '" . $url . "'; </script>";
+        exit();
     }
 }
 

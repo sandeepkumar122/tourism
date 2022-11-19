@@ -19,8 +19,9 @@
             <div class="header-right">
             <?php if(isset($_SESSION['logged_in']) && isset($_SESSION['email'])){ ?>
               <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
+              <a href="./resorts/history.php">History</a>
               <a href="./logout.php">Logout</a>
-             
+              
             <?php }else{ ?>
               <a href="./login.php">Login</a>
               <a href="./register.php">Register</a>

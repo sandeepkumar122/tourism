@@ -10,6 +10,28 @@ CREATE DATABASE traiveling
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 
+--  main table for park
+
+create table parks(
+    id serial PRIMARY KEY,
+    park_id varchar(200) ,
+    park_email varchar(100) ,
+    park_name varchar(100) ,
+    image varchar(100),
+    child_price int,
+    adult_price int,
+    park_contact varchar(50) ,
+    park_address varchar(255),
+    contact_person_name varchar(255),
+    contact_person_number varchar(20),
+    park_status int, -- this used to get to know about which park is this water,theme and educational
+    park_approval_status int,
+    benifits varchar(255),
+    salt varchar(255)
+)
+-- water park 1
+-- educational park 2
+-- educational 3
 
 -- create table park
 create table park(id int,dir varchar(200),
@@ -71,4 +93,13 @@ create table user_data(email varchar(50),phone varchar(13),salt varchar(50),pass
 -- alter table user_data add column id
 alter table user_data add column ID SERIAL PRIMARY KEY
 
-alter table user_data add column full_name varchar(255)
+alter table user_data add column full_name varchar(255);
+
+
+-- add column canceled in paid_booking
+alter table paid_booking add column canceled boolean;
+
+-- add column status
+alter table paid_booking add column status int;
+-- 1 means Active 
+-- 2 means In-active
