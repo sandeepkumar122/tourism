@@ -1,0 +1,24 @@
+
+
+park_status
+1:- water park
+2:- educational park
+3:- theme park
+
+park_approval_status
+1 :- approve
+0:- pending
+-1: reject 
+2:- In active
+
+booking_status
+3:- Completed
+1:- booked
+2:- confirm by resort
+-1:- cancelled by resort
+-2 :- cancelled by admin
+-3 :- cancelled by customer
+
+
+name:-
+resorts-moon.com

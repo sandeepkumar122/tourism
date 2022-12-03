@@ -2,29 +2,24 @@
 require("./header.php");
 include './conn.php';
 // $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
-$query="select * from park_theme";
+$query="select * from parks where park_status=2";
 $pg_query=pg_query($connect,$query);
 $result=pg_fetch_all($pg_query);
 
 for($i=0;$i<count($result);$i++){ 
-    
-    /*$name=$result[$i]['name'];
-    $name=trim($name);
-    $pname = preg_replace('/\s+/', '_',$name);*/
-    
 ?>
 <div class="main-container">
     <div class="sub-container">
-        <a href="main.php?id=<?php print_r($result[$i]['id']); ?>">
+        <a href="main.php?id=<?php print_r($result[$i]['park_id']); ?>">
             
-            <img src=<?php print_r($result[$i]['dir']); ?> class="image-11">
+            <img src=<?php print_r($result[$i]['image']); ?> class="image-11">
         </a>
         
     </div>
     
     <div class="info-11">
         <div class="info-inside" style="text-align:center;">
-            <h1 style="text-align:center;" class="kkp-11 space"><?php  print_r($result[$i]['name']);?></h1>
+            <h1 style="text-align:center;" class="kkp-11 space"><?php  print_r($result[$i]['park_name']);?></h1>
             
             <h1 class="kkp-11 bg" >₹<?php print_r($result[$i]['adult_price']); ?></h1>
             <h2 class="kkp-11 sm"><del>₹1200</del></h2>

@@ -27,7 +27,8 @@ create table parks(
     park_status int, -- this used to get to know about which park is this water,theme and educational
     park_approval_status int,
     benifits varchar(255),
-    salt varchar(255)
+    salt varchar(255),
+    password varchar(255)
 )
 -- water park 1
 -- educational park 2
@@ -103,3 +104,6 @@ alter table paid_booking add column canceled boolean;
 alter table paid_booking add column status int;
 -- 1 means Active 
 -- 2 means In-active
+
+
+alter table paid_booking add column id SERIAL PRIMARY KEY;

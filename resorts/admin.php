@@ -9,7 +9,7 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
     <a href="booking.php">Check All Bookings</a>
     <body>
     <h1>Add new Park</h1>
-    <form action="./add-resorts-main.php" method="POST">
+    <form action="./add-resorts-main.php" method="POST" enctype="multipart/form-data">
       <div class="container">
           <label><b>Park Name</b></label>
           <input type="text" placeholder="Enter Name" name="park_name" required>
@@ -18,7 +18,7 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
           <input type="text" placeholder="Enter Address" name="address" required>
 
           <label><b>Park Image</b></label>
-          <input type="file" placeholder="" name="park_image" required>
+          <input type="file" placeholder="" name="park_image" id="park_image" required>
 
           <label><b>Park Contact Number  </b></label>
           <input type="text" placeholder="Park Contact Number" name="park_contact" required>
@@ -31,6 +31,9 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
 
           <label><b>Contact Person Name </b></label>
           <input type="text" placeholder="Contact Person Name" name="contact_person_name" required>
+
+          <label><b>Contact Person Number </b></label>
+          <input type="text" placeholder="Contact Person Number" name="contact_person_number" required>
 
           <label><b>On Above Price What Benifits Customer Will Get </b></label>
           <input type="text" placeholder="Contact Person Number" name="benifits" required>
@@ -51,7 +54,8 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
             <option value="2">Theme Park</option>
             <option value="3">Educational Park</option>
           </select>
-          <button type="submit" name="add_resort">Add</button>
+          <input type="submit" name="add_resort" class="btn btn-success" value="Add">
+          <!-- <button type="submit" >Add</button> -->
          
       </div>
     </form>
@@ -68,7 +72,7 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
     <form>
         <h1>water parks</h1>
         <?php
-            $query="select * from park";
+            $query="select * from parks";
             $pg_query=pg_query($connect,$query);
             $result=pg_fetch_all($pg_query);
         ?>
@@ -80,6 +84,7 @@ $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres pa
                     <th>CHILD PRICE</th>
                 </tr>
             <?php
+            print_r($result);
             for($i=0;$i<count($result);$i++){ 
             ?>
                 <tr>

@@ -1,6 +1,7 @@
 <html>
     <head>
     <link rel="stylesheet" href="../asset/css/style.css">
+ 
     <link rel="stylesheet" href="../asset/css/boostrap.min.css">
     <script src="../asset/js/min.js"></script>  
     <script src="../asset/js/tr.js"></script>
@@ -12,11 +13,11 @@
     { 
         session_start(); 
     } 
-   
+ 
    ?>
 
-        <div class="header12">
-            <a href="./../index.php" class="logo">CompanyLogo</a>
+        <div class="header12" style="margin-bottom:10px ;">
+            <a href="./dashboard.php" class="logo">CompanyLogo</a>
             <div class="header-right">
             <?php if(isset($_SESSION['logged_in']) && isset($_SESSION['email'])){ ?>
               <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
