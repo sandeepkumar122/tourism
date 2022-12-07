@@ -13,8 +13,8 @@ park_approval_status
 
 booking_status
 3:- Completed
-1:- booked
 2:- confirm by resort
+1:- booked
 -1:- cancelled by resort
 -2 :- cancelled by admin
 -3 :- cancelled by customer

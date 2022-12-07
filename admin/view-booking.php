@@ -10,26 +10,28 @@ $park_res = pg_fetch_all($get_park_query);
 <html>
 
 <head>
+<link rel="stylesheet" href="../css/table.css">
+
 </head>
 
 <body>
 
     <div>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" class="container-fluid">
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" class="container-fluid">
             <div class="stateCityDiv slctStateDiv">
                 <div class="col-lg-3 col-xs-3 form-group ">
                     <label>From Date </label>
-                    <input type="date" name="from_date" id="from_date" placeholder="" value="" class="form-control">
+                    <input type="date" name="from_date" id="from_date" placeholder="" value="<?php echo $_POST['from_date'] ?>" class="form-control">
                     <span class="inptEdt"></span>
                 </div>
                 <div class="col-lg-3 col-xs-3 form-group slctCityStateDiv">
                     <label>To Date </label>
-                    <input type="date" name="to_date" id="to_date" placeholder="" value="" class="form-control">
+                    <input type="date" name="to_date" id="to_date" placeholder="" value="<?php echo $_POST['to_date'] ?>" class="form-control">
                     <span class="inptEdt"></span>
                 </div>
                 <div class="col-lg-3 col-xs-3 form-group slctCityStateDiv">
                     <label>Parks </label>
-                    <select class="form-control" name="parks" id="park">
+                    <select class="form-control" name="parks" id="park" >
                         <option value="">Select Park</option>
                         <?php for ($i = 0; $i < count($park_res); $i++) { ?>
                             <option value="<?php echo $park_res[$i]['park_id']; ?>"><?php echo $park_res[$i]['park_name']; ?></option>
@@ -37,11 +39,16 @@ $park_res = pg_fetch_all($get_park_query);
                     </select>
                     <span class="inptEdt"></span>
                 </div>
+                <div class="col-lg-3 col-xs-3 form-group slctCityStateDiv">
+                    <input type="submit" value="Submit">
+                    <a href="./view-booking.php" class="btn btn-success">Reset</a>
+                </div>
+                
             </div>
         </form>
     </div>
 
-    <table>
+    <table id="alter">
         <thead>
             <tr>
                 <th>Booking Id</th>
@@ -62,11 +69,17 @@ $park_res = pg_fetch_all($get_park_query);
         </thead>
         <tbody>
             <?php include './reports/filters.php';
+        
             $pg_query = pg_query($connect, $select);
             $total_book = pg_fetch_all($pg_query);
+          if(pg_num_rows($pg_query)>0){
+
+          
             for ($j = 0; $j < count($total_book); $j++) {
+                
                 include './reports/view_data.php';
             }
+        }
             ?>
         </tbody>
     </table>
@@ -76,6 +89,7 @@ $park_res = pg_fetch_all($get_park_query);
 <?php
 function check_status($status)
 {
+   
     $get_status = '';
     switch ($status) {
         case 1:
@@ -101,3 +115,13 @@ function check_status($status)
 }
 
 ?>
+<script>
+
+$(document).ready(function() {
+  $('#alter').DataTable({
+    "bPaginate": false,
+    fixedHeader: false,
+    scrollX: false,
+  });
+}); 
+</script>

@@ -1,7 +1,6 @@
 <?php
 include './conn.php';
      
-// $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
             $query="select * from paid_booking where paid=false";
             $pg_query=pg_query($connect,$query);
             $result=pg_fetch_all($pg_query);

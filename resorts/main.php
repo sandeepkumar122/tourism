@@ -62,27 +62,27 @@ $result=pg_fetch_all($pg_query);
             <form method="post" action="checkout.php">
                 <div>
                 <label>date of booking</label><br>
-                <input type="date"  id="bookingDate" name="bookingDate"  class="input-tag"><br>
+                <input type="date" required id="bookingDate" name="bookingDate"  class="input-tag"><br>
                 </div>
                 <div>
                 <label>name</label><br>
-                <input type="text" value="<?php echo $_SESSION['name']; ?>" id="name" name="cust_name" class="input-tag"><br>
+                <input type="text" value="<?php echo $_SESSION['name']; ?>" id="name" name="cust_name" required class="input-tag"><br>
                 </div>
                 <div>
                 <label>number of adults</label><br>
-                <input type="number" id="adult" name="adult" class="input-tag"><br>
+                <input type="number" required id="adult" name="adult" class="input-tag"><br>
                 </div>
                 <div>
                 <label>Child</label><br>
-                <input type="number" id="child" name="child" class="input-tag"><br>
+                <input type="number"  id="child" name="child" class="input-tag"><br>
                 </div>
                 <div>
                 <label>Phone Number</label><br>
-                <input type="phone" id="phone" name="phone" class="input-tag"><br>
+                <input type="phone" required id="phone" name="phone" class="input-tag"><br>
                 </div>
                 <div>
                 <label>Email</label><br>
-                <input type="Email" value="<?php echo $_SESSION['email']; ?>" id="email" name="email" class="input-tag"><br>
+                <input type="Email" value="<?php echo $_SESSION['email']; ?>" id="email" name="email" required class="input-tag"><br>
                 </div>
                 <input type="hidden" id="resort_id" name="resort_id" value="<?php print_r($result[$i]['id']) ?>"><br>
                 <input type="hidden" id="resort_name" name="resort_name" value="<?php print_r($result[$i]['park_name']) ?>"><br>
