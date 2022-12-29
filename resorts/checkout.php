@@ -22,7 +22,7 @@
         $email = $_POST['email'];
         $resort = $_POST['resort_id'];
         $resort_name = $_POST['resort_name'];
-        // $date_of_book=date('Y-m-d',$_POST['bookingDate']);
+        $date_book=$_POST['bookingDate'];
         $today_date = date("Y-m-d");
         $child_price = $_POST['child_price'];
         $adult_price = $_POST['adult_price'];

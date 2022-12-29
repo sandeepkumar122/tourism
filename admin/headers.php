@@ -26,20 +26,16 @@
     { 
         session_start(); 
     } 
- 
+    // print_r($_SESSION);
    ?>
-
         <div class="header12" style="margin-bottom:10px ;">
             <a href="./dashboard.php" class="logo">CompanyLogo</a>
             <div class="header-right">
-            <?php if(isset($_SESSION['logged_in']) && isset($_SESSION['email'])){ ?>
-              <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
-              <a href="./history.php">History</a>
+            <?php if(isset($_SESSION['admin_logged_in']) && isset($_SESSION['admin_email'])){ ?>
+              <a href="#userdata">Hello <?php echo $_SESSION['admin_email']; ?>!!!</a>
               <a href="./logout.php">Logout</a>
-           
             <?php }else{ ?>
-              <a href="./../login.php">Login</a>
-              <a href="./../register.php">Register</a>
+              <a href="./admin-login.php">Login</a>
         <?php    } ?>
         </div>
           </div>

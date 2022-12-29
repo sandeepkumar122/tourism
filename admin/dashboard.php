@@ -1,5 +1,19 @@
 <?php
 include './headers.php';
+if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
+    header('Location:./admin-login.php');
+ }
+ $select_user="select count(*) as total from user_data";
+ $select_user_data = pg_query($connect, $select_user);
+$user_data=pg_fetch_assoc($select_user_data);
+
+$select_book="select count(*) as total from paid_booking where status=1";
+$select_book_data = pg_query($connect, $select_book);
+$book_data=pg_fetch_assoc($select_book_data);
+
+$select_park="select count(*) as total from parks";
+$select_park_data = pg_query($connect, $select_park);
+$park_data=pg_fetch_assoc($select_park_data);
 ?>
 <html>
 
@@ -57,19 +71,19 @@ include './headers.php';
                     <div class="col-sm-3">
                         <div class="well">
                             <h4>Users</h4>
-                            <p>1 Million</p>
+                            <p><?php echo $user_data['total'];  ?></p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
                             <h4>Total Booking</h4>
-                            <p>100 Million</p>
+                            <p><?php echo $book_data['total'];  ?></p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
                             <h4>Total Resorts</h4>
-                            <p>10 Million</p>
+                            <p><?php echo $park_data['total'];  ?></p>
                         </div>
                     </div>
                     <div class="col-sm-3">

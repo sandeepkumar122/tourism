@@ -1,24 +1,4 @@
 <?php
-include '../conn.php';
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
-
-if(isset($_GET['booking_id']) && strlen($_GET['booking_id'])>1 && isset($_GET['action']) && strlen($_GET['action'])>0){
-    $booking_id=pg_escape_string($_GET['booking_id']);
-  
-    $action=pg_escape_string($_GET['action']);
-    if($action==-1){
-        $update_query="update paid_booking set status=-1,canceled=true where booking_id='$booking_id'";
-        $get_park_query = pg_query($connect, $update_query); 
-        if($get_park_query){
-            $url="./reports.php";
-            echo "<script LANGUAGE='JavaScript'>alert('Booking Has Been Cancelled!!'); window.location.href= '" . $url . "'; </script>";
-            exit();
-        }
-    }
-}
 if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['password']) && $_POST['password']){
     $username=pg_escape_string($_POST['username']);
     $password=pg_escape_string($_POST['password']);
@@ -47,5 +27,4 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
     }
     
 }
-
 ?>

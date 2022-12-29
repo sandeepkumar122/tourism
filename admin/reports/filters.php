@@ -13,10 +13,8 @@ if (!isset($_POST['from_date']) || !isset($_POST['to_date']) || !isset($_POST['p
     }
     
     if(isset($_POST['parks']) && strlen($_POST['parks'])>0){
-        $select.=" and park_id = '".$_POST['parks']."'";
+        $select.=" and resort_id = '".$_POST['parks']."'";
     }
-
-
 }
 
 ?>

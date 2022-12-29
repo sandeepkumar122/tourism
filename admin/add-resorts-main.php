@@ -1,5 +1,5 @@
 <?php
-include './conn.php';
+include '../conn.php';
 
 if (isset($_POST['park_name']) && $_POST['address'] && isset($_POST['park_contact']) && isset($_POST['park_email']) && isset($_POST['adult_price']) && isset($_POST['child_price']) && isset($_POST['password']) ) {
    
@@ -37,6 +37,7 @@ if (isset($_POST['park_name']) && $_POST['address'] && isset($_POST['park_contac
             move_uploaded_file($_FILES['park_image']['tmp_name'], $targetfolder);
         }
         $query_for_register = "insert into parks(park_id,park_email,park_name,image,child_price,adult_price,park_contact,park_address,contact_person_name,contact_person_number,park_status,park_approval_status,benifits,salt,password) values ('$park_id','$park_email','$name','$targetfolder_new',$child_price,$adult_price,'$park_contact','$address','$contact_person_name','$contact_person_number',$park_type,1,'$benifits','$salt','$password')";
+      
         $pg_query_uname = pg_query($connect, $query_for_register);
        
         $url = './view-resorts.php';

@@ -50,11 +50,11 @@
               <hr>
           </div>
           </div>
-        <?php require("footer.html"); 
+        <?php require("./footer.php"); 
      
         ?>
     </body>
-    <style>
+    <!-- <style>
         .imag{
             height: 350px;
             width: 950px;
@@ -85,5 +85,5 @@
         #footer{
             margin-top: 20px;
         }
-    </style>
+    </style> -->
 </html>

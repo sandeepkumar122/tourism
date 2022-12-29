@@ -1,8 +1,10 @@
 <?php
 include './headers.php';
 require('../conn.php');
-
-$get_park = "select park_id,park_name from parks";
+if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
+    header('Location:./admin-login.php');
+ }
+$get_park = "select id,park_name from parks";
 $get_park_query = pg_query($connect, $get_park);
 $park_res = pg_fetch_all($get_park_query);
 
@@ -11,6 +13,7 @@ $park_res = pg_fetch_all($get_park_query);
 
 <head>
 <link rel="stylesheet" href="../css/table.css">
+
 
 </head>
 
@@ -34,7 +37,7 @@ $park_res = pg_fetch_all($get_park_query);
                     <select class="form-control" name="parks" id="park" >
                         <option value="">Select Park</option>
                         <?php for ($i = 0; $i < count($park_res); $i++) { ?>
-                            <option value="<?php echo $park_res[$i]['park_id']; ?>"><?php echo $park_res[$i]['park_name']; ?></option>
+                            <option value="<?php echo $park_res[$i]['id']; ?>"><?php echo $park_res[$i]['park_name']; ?></option>
                         <?php } ?>
                     </select>
                     <span class="inptEdt"></span>

@@ -107,3 +107,15 @@ alter table paid_booking add column status int;
 
 
 alter table paid_booking add column id SERIAL PRIMARY KEY;
+
+
+-- create table for admin
+create table admin(
+    username varchar(255),
+    password varchar(255),
+    salt varchar(255),
+    level_permission int
+)
+
+-- add column id
+alter table admin add id serial primary key;

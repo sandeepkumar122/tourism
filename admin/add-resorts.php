@@ -1,6 +1,8 @@
 <?php
 require("./headers.php");
-
+if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
+  header('Location:./admin-login.php');
+}
 include '../conn.php';
 ?>
 <html>

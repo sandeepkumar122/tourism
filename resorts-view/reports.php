@@ -2,8 +2,14 @@
 include './headers.php';
 require('../conn.php');
 
-
+if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
+    $url = './login.php';
+    echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
+    exit();
+}
 ?>
+
+
 <html>
 
 <head>
@@ -50,7 +56,7 @@ require('../conn.php');
                 <th>Resort Name</th>
                 <th>DateTime</th>
                 <th>Status</th>
-                <th>Action</th>
+                <!-- <th>Action</th> -->
             </tr>
         </thead>
         <tbody>

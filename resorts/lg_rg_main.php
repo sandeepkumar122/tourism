@@ -4,8 +4,8 @@ session_start();
 $connect = pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
 if (isset($_POST['login'])) {
     $email = pg_escape_string($_POST['uname']);
-    $password = pg_escape_string($_POST['psw']);
-
+    $password = pg_escape_string($_POST['password']);
+    // print_r($_POST);die;
      $query_for_uname = "select full_name,email,salt,password from user_data where email='$email'";
     $pg_query_uname = pg_query($connect, $query_for_uname);
     if (pg_num_rows($pg_query_uname) > 0) {

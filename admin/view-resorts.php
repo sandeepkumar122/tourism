@@ -1,7 +1,9 @@
 <?php
 include './headers.php';
 require('../conn.php');
-
+if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
+  header('Location:./admin-login.php');
+}
 $select_water="select * from parks where park_status=1";
 $select_theme="select * from parks where park_status=2";
 $select_education="select * from parks where park_status=3";
@@ -32,7 +34,6 @@ $education=pg_fetch_all($select_pg_query_education);
             <th>Adult Price</th>
             <th>Park Contact</th>
             <th>Park Address</th>
-           
             <th>Contact Person Name</th>
             <th>Contact Person Number</th>
             <th>Park Approval Status</th>
@@ -42,7 +43,6 @@ $education=pg_fetch_all($select_pg_query_education);
         <tbody>
         <?php
             for($i=0;$i<count($water);$i++){
-          
         ?>
         <tr>
             <td><?php echo $water[$i]['park_id'] ?></td>

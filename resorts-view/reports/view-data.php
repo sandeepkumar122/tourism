@@ -12,6 +12,6 @@
     <th><?php echo $total_book[$j]['resort_name'] ?></th>
     <th><?php echo $total_book[$j]['day_of_booking'] ?></th>
     <th><?php echo $resu=check_status($total_book[$j]['status']) ?></th>
-    <th><?php  if($total_book[$j]['status']==1){ ?> <a href="./main.php?booking_id=<?php echo $total_book[$j]['booking_id'] ?>&action=-1">Cancel Booking</a>  <?php } ?></th>
-    <th></th>
+    <!-- <th><?php  //if($total_book[$j]['status']==1){ ?> <a href="./main.php?booking_id=<?php //echo $total_book[$j]['booking_id'] ?>&action=-1">Cancel Booking</a>  <?php //} ?></th> -->
+    <!-- <th></th> -->
 </tr>
