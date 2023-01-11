@@ -88,8 +88,8 @@ if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSIO
                     <div class="col-sm-12">
                         <div class="well">
                             <p><a href="./reports.php">View Today Booking</a></p>
-                            <!-- <p><a href="./reports.php">View Past and Upcoming Bookings</a></p>
-                            <p><a href="./view-resorts.php">View Resorts Info</a></p> -->
+                            <p><a href="./update-price.php">Update Prices</a></p>
+                            <!-- <p><a href="./view-resorts.php">View Resorts Info</a></p> -->
                         </div>
                     </div>
                     <!-- <div class="col-sm-4">

@@ -9,6 +9,8 @@
         if (!isset($_SESSION)) {
             session_start();
         }
+        // echo "<pre>";
+        // print_r($_POST);
         require("./header.php");
 
         if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
@@ -22,11 +24,47 @@
         $email = $_POST['email'];
         $resort = $_POST['resort_id'];
         $resort_name = $_POST['resort_name'];
-        $date_book=$_POST['bookingDate'];
+        $date_book = $_POST['bookingDate'];
         $today_date = date("Y-m-d");
         $child_price = $_POST['child_price'];
         $adult_price = $_POST['adult_price'];
         $total = $child_price * $child + $adult_price * $adult;
+
+        $timestamp = strtotime($date_book);
+        $day = strtolower(date('l', $timestamp));
+        if (!isset($_POST['group_picnic'])) {
+            $select_for_price = "select * from prices_adult where park_id='" . $resort . "'";
+            $pg_price = pg_query($connect, $select_for_price);
+            $result_price = pg_fetch_assoc($pg_price);
+            array_shift($result_price);
+            $price_adult = $result_price[$day];
+
+            $select_for_price_child = "select * from prices_child where park_id='" . $resort . "'";
+            $pg_price_child = pg_query($connect, $select_for_price_child);
+            $result_price_child = pg_fetch_assoc($pg_price_child);
+            array_shift($result_price_child);
+            $price_child = $result_price_child[$day];
+            $total_price = $result_price[$day] * $adult + $child * $result_price_child[$day];
+        } else {
+
+            $select_for_price_group = "select * from prices_group_adult where park_id='" . $resort . "'";
+            $pg_price_group = pg_query($connect, $select_for_price_group);
+            $result_price_group = pg_fetch_assoc($pg_price_group);
+            array_shift($result_price_group);
+            $price_adult = $result_price_group[$day];
+
+            $select_for_price_group_child = "select * from prices_group_child where park_id='" . $resort . "'";
+            $pg_price_group_child = pg_query($connect, $select_for_price_group_child);
+            $result_price_group_child = pg_fetch_assoc($pg_price_group_child);
+            array_shift($result_price_group_child);
+
+            $price_child = $result_price_group_child[$day];
+            echo  $total_price = ($adult * $price_adult + $child * $price_child);
+        }
+
+        echo "<pre>";
+        print_r($result_price_group);
+
 
 
         ?>
@@ -38,14 +76,18 @@
                 </div>
                 <div class="card-body" style="background-color: #32bd27 ;color:white">
 
-                    <h3>Name: <?php print_r($_POST['cust_name']); ?> </h3>
-                    <h3>Park Name: <?php print_r($_POST['resort_name']); ?><h3>
-                            <h3>Number Of Children: <?php print_r($_POST['child']); ?> </h3>
-                            <h3>Number Of Adult: <?php print_r($_POST['adult']); ?> </h3>
-                            <h3>Email: <?php print_r($_POST['email']); ?> </h3>
+                    <h3>Name: <?php echo ($_POST['cust_name']); ?> </h3>
+                    <h3>Park Name: <?php echo ($_POST['resort_name']); ?><h3>
+                            <h3>Number Of Children: <?php echo ($_POST['child']);
+                                                    echo "*";
+                                                    echo $result_price_child[$day]; ?> </h3>
+                            <h3>Number Of Adult: <?php echo ($_POST['adult']);
+                                                    echo "*";
+                                                    echo $result_price[$day] ?> </h3>
+                            <h3>Email: <?php echo ($_POST['email']); ?> </h3>
                             <h3>Amount: ₹ <?php echo ($total); ?> </h3>
-                            <h3>Date Of Booking: <?php print_r($_POST['bookingDate']); ?> </h3>
-                            <h3>Phone: <?php print_r($_POST['phone']); ?> </h3>
+                            <h3>Date Of Booking: <?php echo ($_POST['bookingDate']); ?> </h3>
+                            <h3>Phone: <?php echo ($_POST['phone']); ?> </h3>
                             <a href="javascript:void(0)" class="btn btn-sm btn-primary buy_now">Pay Now</a>
 
                 </div>
@@ -61,6 +103,10 @@
                 <input type="text" hidden name="total" value="<?php print_r($total); ?>">
                 <input type="text" hidden name="bookingDate" value="<?php print_r($_POST['bookingDate']); ?>">
                 <input type="text" hidden name="phone" value="<?php print_r($_POST['phone']); ?>">
+                <input type="hidden" id="resort_id" name="resort_id" value="<?php print_r($result[$i]['id']) ?>"><br>
+                <input type="hidden" id="resort_name" name="resort_name" value="<?php print_r($result[$i]['park_name']) ?>"><br>
+                <input type="hidden" name="child_price" value="<?php print_r($result[$i]['child_price']) ?>">
+                <input type="hidden" name="adult_price" value="<?php print_r($result[$i]['adult_price']) ?>">
                 <input type="text" hidden name="paid" value="no">
                 <input type="submit" class="btn btn-sm btn-secondary" value="Pay Later">
             </form>
@@ -112,7 +158,7 @@
                                 resort_name: resort_name
                             },
                             success: function(msg) {
-                              
+
                                 if (msg.success == "1") {
 
                                     window.location.href = 'thank-you.php';
@@ -143,7 +189,7 @@
 
 
         <?php
-      
+
         require("../footer.html");
 
         ?>

@@ -48,4 +48,192 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
     
 }
 
-?>
+
+// for adult price insert and update
+if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday']) && $_POST['Sunday'] && isset($_POST['adult'])){
+   
+    $park_logged=pg_escape_string($_SESSION['park_logged_in']);
+    $monday=pg_escape_string($_POST['Monday']);
+    $tuesday=pg_escape_string($_POST['Tuesday']);
+    $wednesday=pg_escape_string($_POST['Wednesday']);
+    $thursday=pg_escape_string($_POST['Thursday']);
+    $friday=pg_escape_string($_POST['Friday']);
+    $saturday=pg_escape_string($_POST['Saturday']);
+    $sunday=pg_escape_string($_POST['Sunday']);
+    $park_id=pg_escape_string($_SESSION['park_id']);
+
+    if(strlen($park_id)>0 && $park_logged==true){
+
+    $select="select * from prices_adult where park_id=$park_id";
+    $db_query_select=pg_query($connect,$select);
+    if(pg_num_rows($db_query_select)>0){
+        $update="update prices_adult set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
+        $db_query_update=pg_query($connect,$update);
+        if($db_query_update){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }else{
+        $insert="insert into prices_adult(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
+        $db_query_insert=pg_query($connect,$insert);
+        if($db_query_insert){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }
+    }
+  
+  
+}
+
+// for child price insert and update
+if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday']) && $_POST['Sunday'] && isset($_POST['child'])){
+   
+    $park_logged=pg_escape_string($_SESSION['park_logged_in']);
+    $monday=pg_escape_string($_POST['Monday']);
+    $tuesday=pg_escape_string($_POST['Tuesday']);
+    $wednesday=pg_escape_string($_POST['Wednesday']);
+    $thursday=pg_escape_string($_POST['Thursday']);
+    $friday=pg_escape_string($_POST['Friday']);
+    $saturday=pg_escape_string($_POST['Saturday']);
+    $sunday=pg_escape_string($_POST['Sunday']);
+    $park_id=pg_escape_string($_SESSION['park_id']);
+
+    if(strlen($park_id)>0 && $park_logged==true){
+
+    $select="select * from prices_child where park_id=$park_id";
+    $db_query_select=pg_query($connect,$select);
+    if(pg_num_rows($db_query_select)>0){
+        $update="update prices_child set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
+        $db_query_update=pg_query($connect,$update);
+        if($db_query_update){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }else{
+        $insert="insert into prices_child(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
+        $db_query_insert=pg_query($connect,$insert);
+        if($db_query_insert){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }
+    }
+  
+  
+}
+
+// for group adult price update and insert
+if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday']) && $_POST['Sunday'] && isset($_POST['group-adult'])){
+   
+    $park_logged=pg_escape_string($_SESSION['park_logged_in']);
+    $monday=pg_escape_string($_POST['Monday']);
+    $tuesday=pg_escape_string($_POST['Tuesday']);
+    $wednesday=pg_escape_string($_POST['Wednesday']);
+    $thursday=pg_escape_string($_POST['Thursday']);
+    $friday=pg_escape_string($_POST['Friday']);
+    $saturday=pg_escape_string($_POST['Saturday']);
+    $sunday=pg_escape_string($_POST['Sunday']);
+    $park_id=pg_escape_string($_SESSION['park_id']);
+
+    if(strlen($park_id)>0 && $park_logged==true){
+
+    $select="select * from prices_group_adult where park_id=$park_id";
+    $db_query_select=pg_query($connect,$select);
+    if(pg_num_rows($db_query_select)>0){
+        $update="update prices_group_adult set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
+        $db_query_update=pg_query($connect,$update);
+        if($db_query_update){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }else{
+        $insert="insert into prices_group_adult(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
+        $db_query_insert=pg_query($connect,$insert);
+        if($db_query_insert){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }
+    }
+  
+  
+}
+
+// for group child price update and insert
+if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday']) && $_POST['Sunday'] && isset($_POST['group-child'])){
+   
+    $park_logged=pg_escape_string($_SESSION['park_logged_in']);
+    $monday=pg_escape_string($_POST['Monday']);
+    $tuesday=pg_escape_string($_POST['Tuesday']);
+    $wednesday=pg_escape_string($_POST['Wednesday']);
+    $thursday=pg_escape_string($_POST['Thursday']);
+    $friday=pg_escape_string($_POST['Friday']);
+    $saturday=pg_escape_string($_POST['Saturday']);
+    $sunday=pg_escape_string($_POST['Sunday']);
+    $park_id=pg_escape_string($_SESSION['park_id']);
+
+    if(strlen($park_id)>0 && $park_logged==true){
+
+    $select="select * from prices_group_child where park_id=$park_id";
+    $db_query_select=pg_query($connect,$select);
+    if(pg_num_rows($db_query_select)>0){
+        $update="update prices_group_child set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
+        $db_query_update=pg_query($connect,$update);
+        if($db_query_update){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }else{
+        $insert="insert into prices_group_child(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
+        $db_query_insert=pg_query($connect,$insert);
+        if($db_query_insert){
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }else{
+            $url = './update-price.php';
+            echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
+            exit();
+        }
+    }
+    }
+  
+  
+}
+

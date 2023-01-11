@@ -119,3 +119,13 @@ create table admin(
 
 -- add column id
 alter table admin add id serial primary key;
+
+
+-- create column prices
+create table prices_adult(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)
+
+create table prices_child(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)
+
+create table prices_group_adult(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)
+
+create table prices_group_child(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)

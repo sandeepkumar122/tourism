@@ -19,17 +19,57 @@
         ?>
 
             <html>
+            <script>
+                function checkDay(txt) {
+                    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    let dat = txt.value;
+                    let d = new Date(dat);
+                    let day = d.getDay()
+                    // console.log(weekday[day]);
+                    document.getElementById("selectedDat").innerHTML = weekday[day];
+                }
+                function checkGroup(txt){
+                    let total=txt.value;
+                    console.log(total);
+                    if(total>40){
+                        console.log("from if")
+                        // $("#group_p").removeAttr("hidden")
+                        $('#group_p').show();
+                    }else{
+                        console.log("from else")
+                        // $("#group_p").attr("hidden")
+                        $('#group_p').hide();
+                    }
+                }
+            </script>
 
     <body>
         <?php
 
             for ($i = 0; $i < count($result); $i++) {
+                $select_for_price = "select * from prices_adult where park_id='" . $result[$i]['id'] . "'";
+                $pg_price = pg_query($connect, $select_for_price);
+                $result_price = pg_fetch_assoc($pg_price);
+                array_shift($result_price);
+
+                $select_for_price_child = "select * from prices_child where park_id='" . $result[$i]['id'] . "'";
+                $pg_price_child = pg_query($connect, $select_for_price_child);
+                $result_price_child = pg_fetch_assoc($pg_price_child);
+                array_shift($result_price_child);
+
+
+                $select_for_price_group = "select * from prices_group_adult where park_id='" . $result[$i]['id'] . "'";
+                $pg_price_group = pg_query($connect, $select_for_price_group);
+                $result_price_group = pg_fetch_assoc($pg_price_group);
+                array_shift($result_price_group);
+                // echo "<pre>";
+                // print_r($result_price);
         ?>
 
             <div class="main-container">
                 <div class="sub-container">
                     <!-- <a href="main.php?id=123"> -->
-                        <img src=<?php print_r($result[$i]['image']); ?> class="image-11">
+                    <img src=<?php print_r($result[$i]['image']); ?> class="image-11">
                     <!-- </a> -->
                 </div>
 
@@ -98,7 +138,7 @@
     </body>
 
     <head>
-        <title>Educational registration form</title>
+        <title>Book Now</title>
 
     </head>
 
@@ -107,26 +147,81 @@
         <div class="left-part">
 
             <h1>Aqua Imagica</h1>
-            <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p>
+            <p>Benifits:- <?php echo $result[$i]['benifits']; ?></p>
+            <h2>Price</h2>
+            <table id="customers">
+                <tr>
+                    <th>Info</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Sunday</th>
+
+                </tr>
+                <tr>
+                    <td>Adult</td>
+                    <td>₹<?php echo $result_price['monday'] ?></td>
+                    <td>₹<?php echo $result_price['tuesday'] ?></td>
+                    <td>₹<?php echo $result_price['wednesday'] ?></td>
+                    <td>₹<?php echo $result_price['thursday'] ?></td>
+                    <td>₹<?php echo $result_price['friday'] ?></td>
+                    <td>₹<?php echo $result_price['saturday'] ?></td>
+                    <td>₹<?php echo $result_price['sunday'] ?></td>
+                </tr>
+                <!-- <h3>Children Price</h3> -->
+                <tr>
+                    <td>Child</td>
+                    <td>₹<?php echo $result_price_child['monday'] ?></td>
+                    <td>₹<?php echo $result_price_child['tuesday'] ?></td>
+                    <td>₹<?php echo $result_price_child['wednesday'] ?></td>
+                    <td>₹<?php echo $result_price_child['thursday'] ?></td>
+                    <td>₹<?php echo $result_price_child['friday'] ?></td>
+                    <td>₹<?php echo $result_price_child['saturday'] ?></td>
+                    <td>₹<?php echo $result_price_child['sunday'] ?></td>
+                </tr>
+                <h3>Group Adult Price</h3>
+                <tr>
+                    <td>Group Adult(Count Must Be Equal to or Greater Then 40)</td>
+                    <td>₹<?php echo $result_price_group['monday'] ?></td>
+                    <td>₹<?php echo $result_price_group['tuesday'] ?></td>
+                    <td>₹<?php echo $result_price_group['wednesday'] ?></td>
+                    <td>₹<?php echo $result_price_group['thursday'] ?></td>
+                    <td>₹<?php echo $result_price_group['friday'] ?></td>
+                    <td>₹<?php echo $result_price_group['saturday'] ?></td>
+                    <td>₹<?php echo $result_price_group['sunday'] ?></td>
+                </tr>
+            </table>
             <div class="btn-group">
                 <a class="btn-item" href="https://www.w3docs.com/learn-html.html">Check Address</a>
                 <a class="btn-item" href="https://www.w3docs.com/quiz/#">See Photos</a>
             </div>
         </div>
-        <form action="/">
+        <form method="post" action="checkout.php">
             <div class="title">
                 <i class="fas fa-pencil-alt"></i>
-                <h2>Register here</h2>
+                <h2>Book Now</h2>
             </div>
             <div class="info">
-                <input class="fname" type="text" name="name" placeholder="Full name">
-                <input type="text" name="name" placeholder="Email">
-                <input type="text" name="name" placeholder="Phone number">
-                <input type="password" name="name" placeholder="Password">
-                <input class="fname" type="text" name="name" placeholder="Full name">
-                <input type="text" name="name" placeholder="Email">
-               
+                <p id="selectedDat"></p>
+                <input type="date" onchange="checkDay(this)" minDate="01/11/2023" placeholder="Booking Date" required id="bookingDate" name="bookingDate" class="input-tag"><br>
 
+                <input type="hidden" value="<?php echo $_SESSION['name']; ?>" id="name" name="cust_name" required class="input-tag">
+
+                <input type="number" onchange="checkGroup(this)" placeholder="Adult Count" required id="adult" name="adult" class="input-tag">
+
+                <input type="number" placeholder="Child Count" id="child" name="child" class="input-tag">
+                <div class="checkbox" id="group_p" >
+                    <input type="checkbox"  name="group_picnic" id="group_picnic"><span>Is It Group Picnic?</span>
+                </div>
+                <input type="phone" placeholder="Phone" required id="phone" name="phone" class="input-tag">
+                <input type="hidden" id="resort_id" name="resort_id" value="<?php print_r($result[$i]['id']) ?>"><br>
+                <input type="hidden" id="resort_name" name="resort_name" value="<?php print_r($result[$i]['park_name']) ?>"><br>
+                <input type="hidden" name="child_price" value="<?php print_r($result[$i]['child_price']) ?>">
+                <input type="hidden" name="adult_price" value="<?php print_r($result[$i]['adult_price']) ?>">
+                <input type="hidden" value="<?php echo $_SESSION['email']; ?>" id="email" name="email" required class="input-tag">
             </div>
             <div class="checkbox">
                 <input type="checkbox" name="checkbox"><span>I agree to the <a href="https://www.w3docs.com/privacy-policy">Privacy Poalicy for W3Docs.</a></span>
@@ -135,10 +230,7 @@
         </form>
     </div>
 </body>
-
 </html>
-
-
 </html>
 
 <?php
@@ -150,37 +242,60 @@
 
 ?>
 <script>
-    //     $( document ).ready(function() {
-    //         var today = new Date();
-    //         $('#bookingDate').attr("min",today);
-    // });
-    $(document).ready(function() {
-        function getISODate() {
-            var d = new Date();
-            return d.getFullYear() + '-' +
-                (+d.getMonth()) + '-' +
-                (+d.getDate());
-        }
-        $('#bookingDate').prop('min', getISODate());
-
-        function bookingDateFunc() {
-            alert("working")
-            // var today=new Date();
-            // var enterDate=txt.val();
-            // if(enterDate<today){
-            //     alert("Date cannot be less then today");
-            //     $("#bookingDate").val="";
-            // }
-        }
-
+    $(function() {
+        $('#group_p').hide();
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#bookingDate').attr('min', maxDate);
     });
 </script>
 
 <style>
-   .card{
-    text-align:center;width:100%;background-color:blue; 
-    margin-left: 154px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-   } 
+    .card {
+        text-align: center;
+        width: 100%;
+        background-color: blue;
+        margin-left: 154px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #customers tr {
+        background-color: blue !important
+    }
+
+    #customers tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #customers tr:hover {
+        background-color: #ddd;
+    }
+
+    #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+    }
 </style>
