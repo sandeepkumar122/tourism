@@ -15,17 +15,27 @@
    if (!isset($_SESSION)) {
       session_start();
    }
+
+
+   $total_price=$_SESSION['total_amount'];
+   $adult=$_SESSION['adult_count'];
+   $child=$_SESSION['child_count'];
+   $resort_id=$_SESSION['resort_id'];
+   $price_child=$_SESSION['child_price'];
+   $price_adult=$_SESSION['adult_price'];
+   $date_book= $_SESSION['date_of_booking'];
+
    $connect = pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
    if (isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isset($_POST['Product_id']) && $_POST['Product_id'] && isset($_POST['email']) && $_POST['email'] && isset($_POST['total_Amount']) && $_POST['total_Amount']) {
       $payment_id = $_POST['razorpay_payment_id'];
-      $product_id = $_POST['Product_id'];
+      $product_id = $resort_id;
       $email = $_POST['email'];
-      $amount = $_POST['total_Amount'];
+      $amount = $total_price;
       $booking_id = "BOOK" . time();
       $name = $_POST['customer_name'];
       $phone = $_POST['phone'];
-      $child = $_POST['child'];
-      $adult = $_POST['adult'];
+      $child = $child;
+      $adult = $adult;
       $resort_name = $_POST['resort_name'];
 
 
@@ -33,14 +43,16 @@
       $_SESSION['booking_id'] = $booking_id;
       $_SESSION['payment_id'] = $payment_id;
       $_SESSION['email'] = $email;
-      $_SESSION['amount'] = $amount;
+      // $_SESSION['amount'] = $amount;
+
       // $date_of_book=date('Y-m-d',$_POST['dateOfBook']);
+
       $_SESSION['name'] = $name;
       $_SESSION['phone'] = $phone;
-      $_SESSION['child'] = $child;
-      $_SESSION['adult'] = $adult;
+      // $_SESSION['child'] = $child;
+      // $_SESSION['adult'] = $adult;
 
-      $date = new \DateTime($_POST['dateOfBook']);
+      $date = new \DateTime($date_book);
 
       $date = (array)$date;
       $date_of_book = $date['date'];
@@ -56,20 +68,24 @@
          echo json_encode(array('success' => 0));
       }
    } else if (isset($_POST['paid']) && $_POST['paid'] == "no") {
-      $product_id1 = $_POST['resort_id'];
+   //   echo "<pre>";
+   //   print_r($_POST);
+   //   die;
+      $product_id1 = $resort_id;
       $email1 = $_POST['email'];
-      $amount1 = $_POST['total'];
+      $amount1 = $total_price;
       $booking_id1 = "BOOK" . time();
       $name1 = $_POST['customer'];
       $phone1 = $_POST['phone'];
-      $child1 = $_POST['child'];
-      $adult1 = $_POST['adult'];
+      $child1 = $child;
+      $adult1 = $adult;
       $resort_name1 = $_POST['resort_name'];
       $date_of_book1 = $_POST['bookingDate'];
       $paid1 = $_POST['paid'];
 
-      $insert_query_unpaid = "insert into paid_booking(booking_id,name,email,paid,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking,canceled,status) 
+   echo   $insert_query_unpaid = "insert into paid_booking(booking_id,name,email,paid,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking,canceled,status) 
    values('$booking_id1','$name1','$email1',False,$amount1,$product_id1,'$date_of_book1',$adult1,$child1,'$resort_name1',$phone1,now(),false,1)";
+   // die;
       $pg_query_unpaid = pg_query($connect, $insert_query_unpaid);
       if ($pg_query_unpaid) {
          $_SESSION['resort_name'] = $resort_name1;
@@ -87,6 +103,7 @@
          echo "<script LANGUAGE='JavaScript'>alert('Booking Is Done'); window.location.href= '" . $url . "'; </script>";
          exit();
       } else {
+         die;
          $url = './error.php';
          echo "<script LANGUAGE='JavaScript'>alert('Some error Occured!! please try again.'); window.location.href= '" . $url . "'; </script>";
          exit();
@@ -96,14 +113,14 @@
    //    header("Location:../index.php");
    // }
 
-   if(isset($_POST['cancel'])){
-      $cust_name=$_POST['cust_name'];
-      $phone=$_POST['phone'];
-      $bookingDate=$_POST['bookingDate'];
-      $adult=$_POST['adult'];
-      $child=$_POST['child'];
-      $phone=$_POST['phone'];
-      $email=$_POST['email'];
-   }
+   // if(isset($_POST['cancel'])){
+   //    $cust_name=$_POST['cust_name'];
+   //    $phone=$_POST['phone'];
+   //    $bookingDate=$_POST['bookingDate'];
+   //    $adult=$_POST['adult'];
+   //    $child=$_POST['child'];
+   //    $phone=$_POST['phone'];
+   //    $email=$_POST['email'];
+   // }
 
    ?>

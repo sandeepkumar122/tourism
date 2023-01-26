@@ -1,4 +1,11 @@
 <?php
+
+if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
+    $url = './login.php';
+    echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
+    exit();
+}
+
 include './headers.php';
 // print_r($_SESSION);
 $park_id = pg_escape_string($_SESSION['park_id']);
@@ -21,7 +28,7 @@ $select_group_child = "select * from prices_group_child where park_id=$park_id";
 $db_query_select = pg_query($connect, $select_group_child);
 if (pg_num_rows($db_query_select) > 0) {
     $db_group_child = pg_fetch_assoc($db_query_select);
-}
+} 
 
 ?>
 

@@ -5,15 +5,17 @@
 
     <head>
         <?php
+      
+    
+        if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
+            header('Location:../login.php');
+            exit;
+        }
         require("./header.php");
 
-        if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
-            header('Location: ../login.php');
-        }
         $id = $_GET['id'];
         if (isset($id) && strlen($id) > 0) {
-
-            $query = "select * from parks where park_id='$id'";
+            $query = "select * from parks where park_id='$id' and park_approval_status=1";
             $pg_query = pg_query($connect, $query);
             $result = pg_fetch_all($pg_query);
         ?>
