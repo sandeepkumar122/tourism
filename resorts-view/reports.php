@@ -2,7 +2,7 @@
 include './headers.php';
 require('../conn.php');
 
-if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
+if (!isset($_SESSION['email']) && strlen($_SESSION['email']) < 1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in'] == true) {
     $url = './login.php';
     echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
     exit();
@@ -55,13 +55,14 @@ if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSIO
                 <th>Number Of Child</th>
                 <th>Resort Name</th>
                 <th>DateTime</th>
+
                 <th>Status</th>
-                <!-- <th>Action</th> -->
+                <th>Confirm</th>
             </tr>
         </thead>
         <tbody>
             <?php include './reports/filter.php';
-          
+            // echo $select;
             $pg_query = pg_query($connect, $select);
             $total_book = pg_fetch_all($pg_query);
             if (pg_num_rows($pg_query) > 0) {
@@ -103,8 +104,49 @@ function check_status($status)
     return $get_status;
 }
 
+
 ?>
 <script>
+    function confirmBook(txt) {
+        console.log(txt.value);
+        console.log($(`#${txt.value}`)[0].checked)
+        if($(`#${txt.value}`)[0].checked){
+            $.ajax({
+                url: './checkIn.php',
+                type: "post",
+                data: {
+                    name: txt.value,
+                    confirm:1
+                },
+                success: function(result) {
+                    // console.log(result);
+                    // if(result=="done"){
+                        
+                        $(`#status${txt.value}`).html("Completed");
+                    // }
+                }
+            })
+        }
+        if(!$(`#${txt.value}`)[0].checked){
+            $.ajax({
+                url: './checkIn.php',
+                type: "post",
+                data: {
+                    name: txt.value,
+                    confirm:2
+                },
+                success: function(result) {
+                    // console.log(result);
+                    // if(result=="done"){
+                        
+                        $(`#status${txt.value}`).html("Booked");
+                    // }
+                }
+            })
+        }
+       
+
+    }
     $(document).ready(function() {
         $('#alter').DataTable({
             "bPaginate": false,

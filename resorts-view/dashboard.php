@@ -1,11 +1,31 @@
 <?php
-
+include './headers.php';
+if (!isset($_SESSION)) {
+    session_start();
+  }
+// echo "<pre>";
+// print_r($_SESSION);
 if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
     $url = './login.php';
     echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
     exit();
 }
-include './headers.php';
+$today = date("Y-m-d");
+
+
+$park_id=$_SESSION['park_id'];
+ $select_user="select count(*) as total from paid_booking where resort_id=$park_id";
+ $select_user_data = pg_query($connect, $select_user);
+$user_data=pg_fetch_assoc($select_user_data);
+
+$select_book="select count(*) as total from paid_booking where status=1 and date_of_book = '$today' and resort_id=$park_id";
+$select_book_data = pg_query($connect, $select_book);
+$book_data_today=pg_fetch_assoc($select_book_data);
+
+$select_park="select count(*) as total from parks";
+$select_park_data = pg_query($connect, $select_park);
+$park_data=pg_fetch_assoc($select_park_data);
+
 ?>
 <html>
 
@@ -62,25 +82,25 @@ include './headers.php';
                 <div class="row">
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Users</h4>
+                            <h4>Total Today Booking Through Our Platform</h4>
                             <p>1 Million</p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
                             <h4>Total Booking</h4>
-                            <p>100 Million</p>
+                            <p> <?php echo $user_data['total'] ?></p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Total Resorts</h4>
-                            <p>10 Million</p>
+                            <h4>Today Booking</h4>
+                            <p><?php echo $book_data_today['total'] ?></p>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Booking Growth</h4>
+                            <h4>Month Booking</h4>
                             <p>30%</p>
                         </div>
                     </div>

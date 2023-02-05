@@ -7,11 +7,11 @@ if (!isset($_POST['from_date']) || !isset($_POST['to_date'])) {
     $today = date("Y-m-d");
     $select.=" and date_of_book = '$today'";
 }else{
-    if(isset($_POST['from_date'])){
+    if(isset($_POST['from_date']) && strlen($_POST['from_date'])>1){
         $from_date=pg_escape_string($_POST['from_date']);
         $select.= " and date_of_book>='$from_date'";
     }
-    if(isset($_POST['to_date'])){
+    if(isset($_POST['to_date']) && strlen($_POST['to_date'])>1){
         $to_date=pg_escape_string($_POST['to_date']);
         $select.=" and date_of_book<='$to_date'";
     }

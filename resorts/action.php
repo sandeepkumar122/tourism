@@ -8,11 +8,17 @@ if (isset($_SESSION['email'])) {
     $pg_query_select = pg_query($connect, $select_query);
     $result = pg_fetch_all($pg_query_select);
     for ($i = 0; $i < count($result); $i++) {
+        // echo "<pre>";
+        // print_r($result);
 ?>
         <div class="booking-part">
             <div class="inside-booking">
     
-                <form method="post" action="processing.php">
+                <form method="post" action="functions.php">
+                <div>
+                        <label>Booking ID</label><br>
+                        <input type="text" value="<?php echo $result[$i]['booking_id']; ?>" id="bookingDate" readonly name="booking_id" class="input-tag"><br>
+                    </div>
                     <div>
                         <label>date of booking</label><br>
                         <input type="date" value="<?php echo $result[$i]['date_of_book']; ?>" id="bookingDate" readonly name="bookingDate" class="input-tag"><br>

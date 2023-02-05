@@ -1,12 +1,15 @@
 <?php
-
+include './headers.php';
+if (!isset($_SESSION)) {
+    session_start();
+  }
 if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
     $url = './login.php';
     echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
     exit();
 }
 
-include './headers.php';
+// include './headers.php';
 // print_r($_SESSION);
 $park_id = pg_escape_string($_SESSION['park_id']);
 $select = "select * from prices_adult where park_id=$park_id";

@@ -113,14 +113,7 @@
    //    header("Location:../index.php");
    // }
 
-   // if(isset($_POST['cancel'])){
-   //    $cust_name=$_POST['cust_name'];
-   //    $phone=$_POST['phone'];
-   //    $bookingDate=$_POST['bookingDate'];
-   //    $adult=$_POST['adult'];
-   //    $child=$_POST['child'];
-   //    $phone=$_POST['phone'];
-   //    $email=$_POST['email'];
-   // }
+
+ 
 
    ?>

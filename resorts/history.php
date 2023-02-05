@@ -11,7 +11,7 @@ table, td, td {
 </style>
 
 <body>
-<table style="widtd:100%">
+<table style="width:100%">
 <tr>
     <th>Booking Id</th>
     <th>Name</th> 
@@ -26,6 +26,7 @@ table, td, td {
     <th>Phone</th>
     <th>Day Of Booking</th>
     <th>View Tickets</th>
+    <th>Status</th>
   </tr>
 <?php
  if(!isset($_SESSION)) 
@@ -36,10 +37,12 @@ table, td, td {
 $email=$_SESSION['email'];
 
 
-$select_for="select * from paid_booking where email='$email'";
+$select_for="select * from paid_booking where email='$email' order by day_of_booking desc";
 $pg_query_select=pg_query($connect,$select_for);
 $result=pg_fetch_all($pg_query_select);
 for($i=0;$i<count($result);$i++){ 
+  // echo "<pre>";
+  // print_r($result);
 ?>
 
   <tr>
@@ -55,10 +58,39 @@ for($i=0;$i<count($result);$i++){
     <td><?php echo $result[$i]['resort_name']; ?></td>
     <td><?php echo $result[$i]['phone']; ?></td>
     <td><?php echo $result[$i]['day_of_booking']; ?></td>
-    <td><a href="./action.php?book=<?php echo $result[$i]['booking_id']; ?>">View Ticket</a></td>
+    <td><?php if ($result[$i]['status']>0){ ?> <a href="./action.php?book=<?php echo $result[$i]['booking_id']; ?>">View Ticket</a> <?php }else { echo "Canceled"; } ?></td>
+    <td><?php  echo check_status($result[$i]['status']) ?></td>
   </tr>
   <?php 
-} ?>
+} 
+function check_status($status)
+{
+   
+    $get_status = '';
+    switch ($status) {
+        case 1:
+            $get_status = 'Booked';
+            break;
+        case 2:
+            $get_status = 'Confirm By Resort';
+            break;
+        case 3:
+            $get_status = 'Completed';
+            break;
+        case -1:
+            $get_status = 'Cancelled By Resorts';
+            break;
+        case -2:
+            $get_status = 'Cancelled By Admin';
+            break;
+        case -3:
+            $get_status = 'Cancelled By You';
+            break;
+    }
+    return $get_status;
+}
+
+?>
 </table>
 
 </body>

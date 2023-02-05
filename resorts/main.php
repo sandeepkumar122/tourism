@@ -5,8 +5,10 @@
 
     <head>
         <?php
-      
-    
+        if (!isset($_SESSION)) {
+            session_start();
+          }
+       
         if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
             header('Location:../login.php');
             exit;
@@ -198,7 +200,7 @@
             </table>
             <div class="btn-group">
                 <a class="btn-item" href="https://www.w3docs.com/learn-html.html">Check Address</a>
-                <a class="btn-item" href="https://www.w3docs.com/quiz/#">See Photos</a>
+                <a class="btn-item" href="https://www.google.com/search?q=<?php echo $result[$i]['park_name']; ?>+images">See Photos</a>
             </div>
         </div>
         <form method="post" action="checkout.php">
@@ -208,17 +210,19 @@
             </div>
             <div class="info">
                 <p id="selectedDat"></p>
-                <input type="date" onchange="checkDay(this)" minDate="01/11/2023" placeholder="Booking Date" required id="bookingDate" name="bookingDate" class="input-tag"><br>
+                <input type="date" onchange="checkDay(this)"  placeholder="Booking Date" required id="bookingDate" name="bookingDate" class="input-tag"><br>
 
                 <input type="hidden" value="<?php echo $_SESSION['name']; ?>" id="name" name="cust_name" required class="input-tag">
 
+                <p id="selectedAdul"></p>
                 <input type="number" onchange="checkGroup(this)" placeholder="Adult Count" required id="adult" name="adult" class="input-tag">
 
+                <p id="selectedChild"></p>
                 <input type="number" placeholder="Child Count" id="child" name="child" class="input-tag">
                 <div class="checkbox" id="group_p" >
                     <input type="checkbox"  name="group_picnic" id="group_picnic"><span>Is It Group Picnic?</span>
                 </div>
-                <input type="phone" placeholder="Phone" required id="phone" name="phone" class="input-tag">
+                <!-- <input type="phone" placeholder="Phone" required id="phone" name="phone" class="input-tag"> -->
                 <input type="hidden" id="resort_id" name="resort_id" value="<?php print_r($result[$i]['id']) ?>"><br>
                 <input type="hidden" id="resort_name" name="resort_name" value="<?php print_r($result[$i]['park_name']) ?>"><br>
                 <input type="hidden" name="child_price" value="<?php print_r($result[$i]['child_price']) ?>">

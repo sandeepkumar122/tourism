@@ -6,20 +6,24 @@ if (isset($_POST['login'])) {
     $email = pg_escape_string($_POST['uname']);
     $password = pg_escape_string($_POST['password']);
     // print_r($_POST);die;
-     $query_for_uname = "select full_name,email,salt,password from user_data where email='$email'";
+     $query_for_uname = "select full_name,email,salt,password,phone from user_data where email='$email'";
     $pg_query_uname = pg_query($connect, $query_for_uname);
     if (pg_num_rows($pg_query_uname) > 0) {
         $result_uname = pg_fetch_row($pg_query_uname);
-        
+        // echo "<pre>";
+        // print_r($result_uname);
+        // die;
         $full_name = $result_uname[0];
         $uname = $result_uname[1];
         $salt = $result_uname[2];
         $dbpassword = $result_uname[3];
+        $phone = $result_uname[4];
 
         if ($email == $uname && $dbpassword == sha1(md5($password) . $salt)) {
             $_SESSION['email'] = $email;
             $_SESSION['logged_in'] = 1;
             $_SESSION['name'] = $full_name;
+            $_SESSION['phone']=$phone;
             header('Location: ../index.php');
         }
         else{

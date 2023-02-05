@@ -11,7 +11,8 @@
     <th><?php echo $total_book[$j]['num_child'] ?></th>
     <th><?php echo $total_book[$j]['resort_name'] ?></th>
     <th><?php echo $total_book[$j]['day_of_booking'] ?></th>
-    <th><?php echo $resu=check_status($total_book[$j]['status']) ?></th>
+    <th id="status<?php echo $total_book[$j]['booking_id'] ?>"><?php echo $resu=check_status($total_book[$j]['status']) ?></th>
+    <th><?php if($total_book[$j]['status']>0){  ?> <input type="checkbox" <?php if($total_book[$j]['status']==3){ echo "checked"; } ?> id="<?php echo $total_book[$j]['booking_id'];  ?>" onchange="confirmBook(this)" value="<?php echo $total_book[$j]['booking_id'];  ?>"><?php }else{ echo "Canceled"; } ?> </th>
     <!-- <th><?php  //if($total_book[$j]['status']==1){ ?> <a href="./main.php?booking_id=<?php //echo $total_book[$j]['booking_id'] ?>&action=-1">Cancel Booking</a>  <?php //} ?></th> -->
     <!-- <th></th> -->
 </tr>

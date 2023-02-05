@@ -20,13 +20,14 @@
         $name = pg_escape_string($_POST['cust_name']);
         $adult = pg_escape_string($_POST['adult']);
         $child = pg_escape_string($_POST['child']);
-        $phone = pg_escape_string($_POST['phone']);
-        $email = pg_escape_string($_POST['email']);
+        
+        $email = pg_escape_string($_SESSION['email']);
         $resort = pg_escape_string($_POST['resort_id']);
         $resort_name = pg_escape_string($_POST['resort_name']);
         $date_book = pg_escape_string($_POST['bookingDate']);
         $today_date = date("Y-m-d");
        
+        $phone = pg_escape_string($_SESSION['phone']);
         // $child_price = $_POST['child_price'];
         // $adult_price = $_POST['adult_price'];
         // $total = $child_price * $child + $adult_price * $adult;
@@ -69,7 +70,7 @@
         $_SESSION['child_price']=$price_child;
         $_SESSION['adult_price']=$price_adult;
         $_SESSION['date_of_booking']=$date_book;
-
+        
         // echo "<pre>";
         // print_r($result_price_group);
 
@@ -141,6 +142,7 @@
                     "name": "Picnic",
                     "description": "Payment",
                     "image": "",
+                    "phone":9082527187,
                     "handler": function(response) {
 
                         console.log(response);

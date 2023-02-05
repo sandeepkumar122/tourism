@@ -43,6 +43,7 @@
       <!-- end here -->
 
       </select>
+      <a href="../index.php">Dashboard</a>
       <?php if (isset($_SESSION['logged_in']) && isset($_SESSION['email'])) { ?>
         <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
         <a href="./history.php">History</a>
@@ -119,40 +120,36 @@
 
 
   // updated 3rd autocomplete
-  // $(document).ready(function() {
-  //   BindControls();
-  // });
+  $(document).ready(function() {
+    BindControls();
+  });
 
   function BindControls() {
     const arrBirds = [
-      "Bald Eagle",
-      "Cooper's Hawk",
-      "Mourning Dove",
-      "Abert's Towhee",
-      "Brewer's Sparrow",
-      "Black Vulture",
-      "Gila Woodpecker",
-      "Gilded Flicker",
-      "Cassin's Sparrow",
-      "Bell's Sparrow",
-      "American Kestrel"
+      "Water Kingdom",
+      "Aqua Imagica",
+      "Adlabs Imagica",
+      "Excelworld"
     ];
     var arr = {
-      "one": 1,
-      "two": 2,
-      "three": 3
-    };
+      "Water Kingdom":"PARK1668928928",
+      "Aqua Imagica":"PARK1670648903",
+      "Adlabs Imagica":"PARK1669216611",
+      "Excelworld":"PARK1669215853"
+    }
 
     $("#txtBirds").autocomplete({
       source: arrBirds,
       minLength: 0,
       scroll: true
     }).data("ui-autocomplete")._renderItem = function(ul, item) {
-
+     
       let txt = String(item.value).replace(new RegExp(this.term, "gi"), "<b>$&</b>");
+      let element="<a href=./main.php?id="+arr[item.value]+">" + txt + "</a>";
       return $("<li></li>")
         .data("ui-autocomplete-item", item)
-        .append("<a href='./main.php?id=PARK1670648903'>" + txt + "</a>")
+        // .append("<a href='./main.php?id='"+arr[item.value]+">" + txt + "</a>")
+        .append(element)
         .appendTo(ul);
     };
   }

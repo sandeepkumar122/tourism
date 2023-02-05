@@ -22,7 +22,7 @@ require('../conn.php');
         <form action="./main.php" method="POST">
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" name="username" placeholder="Email or Phone" required>
+            <input type="text" name="username" placeholder="Email" required>
           </div>
           <div class="row">
             <i class="fas fa-lock"></i>
