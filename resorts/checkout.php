@@ -100,7 +100,7 @@
                             <a href="javascript:void(0)" class="btn btn-sm btn-primary buy_now">Pay Now</a>
 
                 </div>
-            </div>
+            </div> 
 
             <form method="post" action="processing.php">
                 <input type="text" hidden name="customer" value="<?php echo $name ?>">
@@ -151,7 +151,7 @@
                             type: 'post',
                             dataType: 'json',
                             data: {
-                                razorpay_payment_id: response.razorpay_payment_id,
+                                razorpay_payment_id:  response.razorpay_payment_id,
                                 total_Amount: totalAmount,
                                 Product_id: product_id,
                                 email: email_id,

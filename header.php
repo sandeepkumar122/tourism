@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="./asset/css/boostrap.min.css">
     <script src="./asset/js/min.js"></script>  
     <script src="./assets/js/tr.js"></script> 
+    
 </head>
     <body>
    <?php 
@@ -11,6 +12,8 @@
     { 
         session_start(); 
     } 
+    include './functions/encyptDecrypt.php';
+    include './conn.php';
     $connect=pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
    ?>
 

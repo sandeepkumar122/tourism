@@ -129,3 +129,15 @@ create table prices_child(park_id int,monday int,tuesday int,wednesday int,thurs
 create table prices_group_adult(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)
 
 create table prices_group_child(park_id int,monday int,tuesday int,wednesday int,thursday int,friday int,saturday int,sunday int)
+
+
+-- forget password
+create table forget_password (
+user_id int,
+email varchar(255),
+salt varchar(255),
+last_generated timestamp
+)
+
+-- add client Ip
+alter table user_data add column client_ip varchar(255)

@@ -1,5 +1,5 @@
 
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+//  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 $('#show_pass_check').on("change", function () {
   var y = document.getElementById("password");
@@ -27,7 +27,7 @@ $('#cpassword').on("change", function () {
   }
 });
 $('#bookingDate').on("change", function () {
-  alert("working")
+  // alert("working")
   // $('#bookingDate').on("change",function(){
 //   // alert("working");
 //   alert(this.val)
@@ -45,7 +45,18 @@ $(document).ready(function () {
   }
   $('#bookingDate').prop('min', getISODate());
 });
-
+function checkPass(txt){
+  // let pass=$("#MainPassword").value;
+  let pass=document.getElementById("MainPassword").value;
+  console.log(pass,` this is first password `)
+  if(pass!=txt.value){
+      alert("Password Does Not Match With Confirm Password!!!")
+      txt.value="";
+  }
+  let hash=encrypt(pass);
+  $("#password").val(hash);
+  // console.log(txt.value)
+}
 function bookingDateFunc(txt){
   alert("working")
   // var today=new Date();

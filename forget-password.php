@@ -1,6 +1,5 @@
 <?php
 include './header.php';
-require('./conn.php');
 ?>
 
 <!DOCTYPE html>
@@ -20,16 +19,13 @@ require('./conn.php');
   <body>
     <div class="container">
       <div class="wrapper">
-        <div class="title"><span>Login Form</span></div>
-        <form action="./resorts/lg_rg_main.php" method="POST">
+        <div class="title"><span>Forget Password</span></div>
+        <form action="./resorts/src/pass-for.php" method="POST">
           <div class="row">
             <i class="fas fa-user"></i>
-            <input type="text" name="uname" placeholder="Email or Phone" required>
+            <input type="text" name="email" placeholder="Email" required>
           </div>
-          <div class="row">
-            <i class="fas fa-lock"></i>
-            <input type="password" name="password" placeholder="Password" required>
-          </div>
+         
           <div class="col-md-12 col-xs-12 form-group">
                 <div class="form-group">
                     <div class="g-recaptcha" data-callback="recaptchaCallback" data-sitekey="6LfqasQhAAAAAAdC75xiLHUsbIdFst_wqwRmkqB6" required>
@@ -37,9 +33,9 @@ require('./conn.php');
                     <span id="captcha_error" class="text-danger"></span>
                 </div>
             </div>
-          <div class="pass"><a href="./forget-password.php">Forgot password?</a></div>
+          <div class="pass"><a href="./forget-password.php">Login</a></div>
           <div class="row button">
-            <input id="login" type="submit" disabled name="login" >
+            <input id="login" type="submit" disabled name="forget-pass" >
           </div>
           <div class="signup-link">Not a member? <a href="./register.php">Signup now</a></div>
         </form>
