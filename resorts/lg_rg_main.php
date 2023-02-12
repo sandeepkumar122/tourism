@@ -52,14 +52,14 @@ if (isset($_POST['login'])) {
                     $_SESSION['logged_in'] = 1;
                     $_SESSION['name'] = $full_name;
                     $_SESSION['phone'] = $phone;
-                    header('Location: ../index.php');
+                    header('Location: ../index');
                 } else {
-                    $url = '../login.php';
+                    $url = '../login';
                     echo "<script LANGUAGE='JavaScript'>alert('Incorrect Password please check password!!'); window.location.href= '" . $url . "'; </script>";
                     exit();
                 }
             } else {
-                $url = '../login.php';
+                $url = '../login';
                 echo "<script LANGUAGE='JavaScript'>alert('User Not Exit please check email!!'); window.location.href= '" . $url . "'; </script>";
                 exit();
             }
@@ -89,7 +89,7 @@ if (isset($_POST['register'])) {
                 $query_for_select = "select * from user_data where email='$email'";
                 $pg_query_select = pg_query($connect, $query_for_select);
                 if (pg_num_rows($pg_query_select) > 0) {
-                    $url = '../register.php';
+                    $url = '../register';
                     echo "<script LANGUAGE='JavaScript'>alert('Email Alredy exist'); window.location.href= '" . $url . "'; </script>";
                     exit();
                 }
@@ -107,10 +107,10 @@ if (isset($_POST['register'])) {
                 $query_for_forget = "insert into forget_password(user_id,email,salt,last_generated) values ('$uid','$email','$salt',NOW())";
                 $pg_query_forget = pg_query($connect, $query_for_forget);
                
-                $url = '../login.php';
+                $url = '../login';
                 echo "<script LANGUAGE='JavaScript'>alert('Registration successfull please login through your credentials'); window.location.href= '" . $url . "'; </script>";
             } else {
-                $url = "../register.php";
+                $url = "../register";
                 echo "<script LANGUAGE='JavaScript'>alert('Please Enter full details'); window.location.href= '" . $url . "'; </script>";
                 exit();
             }

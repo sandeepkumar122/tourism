@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="./asset/css/boostrap.min.css">
     <script src="./asset/js/min.js"></script>  
     <script src="./assets/js/tr.js"></script> 
-    
+   
 </head>
     <body>
    <?php 
@@ -18,16 +18,16 @@
    ?>
 
         <div class="header12">
-            <a href="./index.php" class="logo">CompanyLogo</a>
+            <a href="./index" class="logo">CompanyLogo</a>
             <div class="header-right">
             <?php if(isset($_SESSION['logged_in']) && isset($_SESSION['email'])){ ?>
               <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
-              <a href="./resorts/history.php">History</a>
-              <a href="./logout.php">Logout</a>
+              <a href="./resorts/history">History</a>
+              <a href="./logout">Logout</a>
               
             <?php }else{ ?>
-              <a href="./login.php">Login</a>
-              <a href="./register.php">Register</a>
+              <a href="./login">Login</a>
+              <a href="./register">Register</a>
         <?php    } ?>
         </div>
           </div>

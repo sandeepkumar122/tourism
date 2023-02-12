@@ -60,7 +60,7 @@ require("./header.php");
           <td><?php echo $result[$i]['resort_name']; ?></td>
           <td><?php echo $result[$i]['phone']; ?></td>
           <td><?php echo $result[$i]['day_of_booking']; ?></td>
-          <td><?php if ($result[$i]['status'] > 0) { ?> <a href="./action.php?book=<?php echo $result[$i]['booking_id']; ?>">View Ticket</a> <?php } else {
+          <td><?php if ($result[$i]['status'] > 0) { ?> <a href="./action?book=<?php echo $result[$i]['booking_id']; ?>">View Ticket</a> <?php } else {
                                                                                                                                           echo "Canceled";
                                                                                                                                         } ?></td>
           <td><?php echo check_status($result[$i]['status']) ?></td>

@@ -14,15 +14,15 @@
     } 
    ?>
         <div class="header12">
-            <a href="./dashboard.php" class="logo">CompanyLogo</a>
+            <a href="./dashboard" class="logo">CompanyLogo</a>
             <div class="header-right">
             <?php if(isset($_SESSION['park_logged_in']) && $_SESSION['park_logged_in']==true && isset($_SESSION['email'])){ ?>
               <a href="#">Hello <?php echo $_SESSION['park_name']; ?>!!!</a>
-              <a href="./dashboard.php">Dashboard</a>
-              <a href="./logout.php">Logout</a>
+              <a href="./dashboard">Dashboard</a>
+              <a href="./logout">Logout</a>
            
             <?php }else{ ?>
-              <a href="./login.php">Login</a>
+              <a href="./login">Login</a>
               <!-- <a href="./register.php">Register</a> -->
         <?php    } ?>
         </div>

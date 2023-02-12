@@ -5,6 +5,8 @@
   <link rel="stylesheet" href="../asset/css/boostrap.min.css">
   <script src="../asset/js/min.js"></script>
   <script src="../asset/js/tr.js"></script>
+  <script src="../function/javascript/aes.js"></script>
+  <script src="../functions/javascript/encryptionDecrypt.js"></script>
   <!-- updated auto search -->
   <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -23,11 +25,12 @@
   if (!isset($_SESSION)) {
     session_start();
   }
+include '../functions/encyptDecrypt.php';
 
   ?>
 
   <div class="header12">
-    <a href="./../index.php" class="logo">CompanyLogo</a>
+    <a href="./../index" class="logo">CompanyLogo</a>
     <div class="header-right">
       <!-- <input type="text" id="search">
       <select name="" id="search-result"> -->
@@ -43,15 +46,15 @@
       <!-- end here -->
 
       </select>
-      <a href="../index.php">Dashboard</a>
+      <a href="../index">Dashboard</a>
       <?php if (isset($_SESSION['logged_in']) && isset($_SESSION['email'])) { ?>
         <a href="#userdata">Hello <?php echo $_SESSION['name']; ?>!!!</a>
-        <a href="./history.php">History</a>
-        <a href="./logout.php">Logout</a>
+        <a href="./history">History</a>
+        <a href="./logout">Logout</a>
 
       <?php } else { ?>
-        <a href="./../login.php">Login</a>
-        <a href="./../register.php">Register</a>
+        <a href="./../login">Login</a>
+        <a href="./../register">Register</a>
       <?php    } ?>
 
     </div>
@@ -60,35 +63,35 @@
 
 </html>
 <script>
-  $('#search-result').change(function() {
-    var val = document.getElementById("search-result").value;
-    console.log(val);
-    window.location.href = "http://localhost/tourism/resorts/main.php?id=" + val;
+  // $('#search-result').change(function() {
+  //   var val = document.getElementById("search-result").value;
+  //   console.log(val);
+  //   window.location.href = "http://localhost/tourism/resorts/main.php?id=" + val;
 
-  });
+  // });
 
-  $("#search").on('keypress', function(e) {
-    var keynum;
-    if (window.event) {
-      keynum = e.keyCode;
-    } else if (e.which) {
-      keynum = e.which;
-    }
-    keynum = String.fromCharCode(keynum);
-    var search = document.getElementById("search").value;
-    search += keynum;
-    $.ajax({
-      url: './recomendation.php',
-      type: "post",
-      data: {
-        name: search
-      },
-      success: function(result) {
-        console.log(result);
-        $("#search-result").html(result);
-      }
-    })
-  })
+  // $("#search").on('keypress', function(e) {
+  //   var keynum;
+  //   if (window.event) {
+  //     keynum = e.keyCode;
+  //   } else if (e.which) {
+  //     keynum = e.which;
+  //   }
+  //   keynum = String.fromCharCode(keynum);
+  //   var search = document.getElementById("search").value;
+  //   search += keynum;
+  //   $.ajax({
+  //     url: './recomendation.php',
+  //     type: "post",
+  //     data: {
+  //       name: search
+  //     },
+  //     success: function(result) {
+  //       console.log(result);
+  //       $("#search-result").html(result);
+  //     }
+  //   })
+  // })
 
 
   var search_terms = ['Water Kingdom', 'Aqua Imagica', 'Adlabs Imagica', 'Mumbai Darshan', 'iphone', 'iphone 12'];

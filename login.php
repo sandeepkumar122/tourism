@@ -21,7 +21,7 @@ require('./conn.php');
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Login Form</span></div>
-        <form action="./resorts/lg_rg_main.php" method="POST">
+        <form action="./resorts/lg_rg_main" method="POST">
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" name="uname" placeholder="Email or Phone" required>
@@ -37,11 +37,11 @@ require('./conn.php');
                     <span id="captcha_error" class="text-danger"></span>
                 </div>
             </div>
-          <div class="pass"><a href="./forget-password.php">Forgot password?</a></div>
+          <div class="pass"><a href="./forget-password">Forgot password?</a></div>
           <div class="row button">
             <input id="login" type="submit" disabled name="login" >
           </div>
-          <div class="signup-link">Not a member? <a href="./register.php">Signup now</a></div>
+          <div class="signup-link">Not a member? <a href="./register">Signup now</a></div>
         </form>
       </div>
     </div>

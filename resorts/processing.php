@@ -10,26 +10,26 @@
    //   $_POST['child']=1;
    //   $_POST['adult']=2;
    //   $_POST['resort_name']='water kingdom';
-   //   require("../header.php");
-   // include './conn.php';
+
    if (!isset($_SESSION)) {
       session_start();
    }
+   include '../functions/encyptDecrypt.php';
+   include './conn.php';
 
-
-   $total_price=$_SESSION['total_amount'];
-   $adult=$_SESSION['adult_count'];
-   $child=$_SESSION['child_count'];
-   $resort_id=$_SESSION['resort_id'];
-   $price_child=$_SESSION['child_price'];
-   $price_adult=$_SESSION['adult_price'];
-   $date_book= $_SESSION['date_of_booking'];
+   $total_price = $_SESSION['total_amount'];
+   $adult = $_SESSION['adult_count'];
+   $child = $_SESSION['child_count'];
+   $resort_id = $_SESSION['resort_id'];
+   $price_child = $_SESSION['child_price'];
+   $price_adult = $_SESSION['adult_price'];
+   $date_book = $_SESSION['date_of_booking'];
 
    $connect = pg_connect("host=localhost port=5432 dbname=traiveling user=postgres password=1234");
    if (isset($_POST['razorpay_payment_id']) && $_POST['razorpay_payment_id'] && isset($_POST['Product_id']) && $_POST['Product_id'] && isset($_POST['email']) && $_POST['email'] && isset($_POST['total_Amount']) && $_POST['total_Amount']) {
-      $payment_id = $_POST['razorpay_payment_id'];
-      $product_id = $resort_id;
-      $email = $_POST['email'];
+      $payment_id = decryption(pg_escape_string($_POST['razorpay_payment_id']));
+      $product_id = ($resort_id);
+      $email = decryption(pg_escape_string($_POST['email']));
       $amount = $total_price;
       $booking_id = "BOOK" . time();
       $name = $_POST['customer_name'];
@@ -63,29 +63,30 @@
       $pg_query = pg_query($connect, $query);
 
       if ($pg_query) {
+         // mail for succesfull booking with payment Id and ticket
          echo json_encode(array('success' => 1));
       } else {
          echo json_encode(array('success' => 0));
       }
    } else if (isset($_POST['paid']) && $_POST['paid'] == "no") {
-   //   echo "<pre>";
-   //   print_r($_POST);
-   //   die;
+      //   echo "<pre>";
+      //   print_r($_POST);
+      //   die;
       $product_id1 = $resort_id;
-      $email1 = $_POST['email'];
+      $email1 = pg_escape_string($_POST['email']);
       $amount1 = $total_price;
       $booking_id1 = "BOOK" . time();
-      $name1 = $_POST['customer'];
-      $phone1 = $_POST['phone'];
+      $name1 = pg_escape_string($_POST['customer']);
+      $phone1 = pg_escape_string($_POST['phone']);
       $child1 = $child;
       $adult1 = $adult;
-      $resort_name1 = $_POST['resort_name'];
-      $date_of_book1 = $_POST['bookingDate'];
-      $paid1 = $_POST['paid'];
+      $resort_name1 = pg_escape_string($_POST['resort_name']);
+      $date_of_book1 = pg_escape_string($_POST['bookingDate']);
+      $paid1 = pg_escape_string($_POST['paid']);
 
-   echo   $insert_query_unpaid = "insert into paid_booking(booking_id,name,email,paid,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking,canceled,status) 
+      $insert_query_unpaid = "insert into paid_booking(booking_id,name,email,paid,amount,resort_id,date_of_book,num_adult,num_child,resort_name,phone,day_of_booking,canceled,status) 
    values('$booking_id1','$name1','$email1',False,$amount1,$product_id1,'$date_of_book1',$adult1,$child1,'$resort_name1',$phone1,now(),false,1)";
-   // die;
+      // die;
       $pg_query_unpaid = pg_query($connect, $insert_query_unpaid);
       if ($pg_query_unpaid) {
          $_SESSION['resort_name'] = $resort_name1;
@@ -98,7 +99,7 @@
          $_SESSION['adult'] = $adult1;
 
          $_SESSION['date_of_book'] = $date_of_book1;
-
+         // mail for succesfull booking Id and ticket
          $url = './thank-you.php';
          echo "<script LANGUAGE='JavaScript'>alert('Booking Is Done'); window.location.href= '" . $url . "'; </script>";
          exit();
@@ -114,6 +115,6 @@
    // }
 
 
- 
+
 
    ?>

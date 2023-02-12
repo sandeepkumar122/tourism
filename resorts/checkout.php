@@ -2,7 +2,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+    <script src="../functions/javascript/aes.js"></script>
+    <script src="../functions/javascript/encryptionDecrypt.js"></script>
     <head>
 
         <?php
@@ -11,12 +12,14 @@
         }
         // echo "<pre>";
         // print_r($_POST);
-        require("./header.php");
+        require("./header");
 
         if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
-            header('Location: ../register.php');
+            header('Location: ../register');
         }
-
+        if(!isset($_POST['cust_name']) && !isset($_POST['resort_name'])){
+            header('Location: ../index');
+        }
         $name = pg_escape_string($_POST['cust_name']);
         $adult = pg_escape_string($_POST['adult']);
         $child = pg_escape_string($_POST['child']);
@@ -102,7 +105,7 @@
                 </div>
             </div> 
 
-            <form method="post" action="processing.php">
+            <form method="post" action="processing">
                 <input type="text" hidden name="customer" value="<?php echo $name ?>">
                 <input type="text" hidden name="resort_name" value="<?php echo $resort_name ?>">
                 <input type="text" hidden name="email" value="<?php echo $email ?>">
@@ -151,11 +154,11 @@
                             type: 'post',
                             dataType: 'json',
                             data: {
-                                razorpay_payment_id:  response.razorpay_payment_id,
-                                total_Amount: totalAmount,
-                                Product_id: product_id,
-                                email: email_id,
-                                dateOfBook: date_of_book,
+                                razorpay_payment_id:  encrypt(response.razorpay_payment_id),
+                                total_Amount: encrypt(totalAmount),
+                                Product_id: encrypt(product_id),
+                                email: encrypt(email_id),
+                                dateOfBook: encrypt(date_of_book),
                                 customer_name: name,
                                 phone: phone,
                                 child: child,

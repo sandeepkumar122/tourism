@@ -17,7 +17,7 @@ if (isset($_GET['code'])) {
     $select_for_code = "select extract(EPOCH FROM(now()-last_generated)) as second,email from forget_password where salt='$code'";
     $pg_select_for_code = pg_query($connect, $select_for_code);
     if (pg_num_rows($pg_select_for_code) < 1) {
-        $url = '../index.php';
+        $url = '../index';
         echo "<script LANGUAGE='JavaScript'>window.location.href= '" . $url . "'; </script>";
         exit();
     }
@@ -26,7 +26,7 @@ if (isset($_GET['code'])) {
     $_SESSION['email'] = $email;
     if ($data[0]['second'] < 3600) {
 ?>
-        <form action="./resorts/src/pass-for.php" method="POST">
+        <form action="./resorts/src/pass-for" method="POST">
             <div class="container" <label>Password</label>
                 <input type="Password" required id="MainPassword">
                 <p><input type="checkbox" id="show_pass_check">Show Password</p>
@@ -41,16 +41,16 @@ if (isset($_GET['code'])) {
 
             <div class="container" style="background-color:#f1f1f1">
 
-                <span class="psw">Forgot <a href="./register.php">password?</a></span>
+                <span class="psw">Forgot <a href="./register">password?</a></span>
             </div>
         </form>
 <?php  } else {
-        $url = '../forget-password.php';
+        $url = '../forget-password';
         echo "<script LANGUAGE='JavaScript'>alert('Link Is Expired!!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }
 } else {
-    $url = './forget-password.php';
+    $url = './forget-password';
     echo "<script LANGUAGE='JavaScript'>window.location.href= '" . $url . "'; </script>";
     exit();
 }

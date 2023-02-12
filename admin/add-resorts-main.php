@@ -40,11 +40,11 @@ if (isset($_POST['park_name']) && $_POST['address'] && isset($_POST['park_contac
       
         $pg_query_uname = pg_query($connect, $query_for_register);
        
-        $url = './view-resorts.php';
+        $url = './view-resorts';
         echo "<script LANGUAGE='JavaScript'>alert('Park Added SuccessFully.'); window.location.href= '" . $url . "'; </script>";
         exit();
         }else{
-            $url="./error.php";
+            $url="./error";
             echo "<script LANGUAGE='JavaScript'>alert('Something Went Wrong!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }

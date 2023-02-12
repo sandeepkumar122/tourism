@@ -10,10 +10,10 @@
           }
        
         if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
-            header('Location:../login.php');
+            header('Location:../login');
             exit;
         }
-        require("./header.php");
+        require("./header");
 
         $id = $_GET['id'];
         if (isset($id) && strlen($id) > 0) {
@@ -203,7 +203,7 @@
                 <a class="btn-item" href="https://www.google.com/search?q=<?php echo $result[$i]['park_name']; ?>+images">See Photos</a>
             </div>
         </div>
-        <form method="post" action="checkout.php">
+        <form method="post" action="checkout">
             <div class="title">
                 <i class="fas fa-pencil-alt"></i>
                 <h2>Book Now</h2>
@@ -242,7 +242,7 @@
 <?php
             }
         } else {
-            header("Location: ../index.php");
+            header("Location: ../index");
         }
         require("../footer.html");
 

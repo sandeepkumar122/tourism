@@ -9,7 +9,7 @@ include './conn.php';
       }
    
     if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
-        header('Location:../login.php');
+        header('Location:../login');
         exit;
     }
 
@@ -20,7 +20,7 @@ include './conn.php';
         $get_park_query = pg_query($connect, $update_query); 
       // die;
         if($get_park_query){
-            $url="./history.php";
+            $url="./history";
             echo "<script LANGUAGE='JavaScript'>alert('Booking Has Been Cancelled!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }

@@ -2,7 +2,7 @@
 include './headers.php';
 require('../conn.php');
 if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
-  header('Location:./admin-login.php');
+  header('Location:./admin-login');
 }
 ?>
  <head>

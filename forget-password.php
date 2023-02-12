@@ -33,11 +33,11 @@ include './header.php';
                     <span id="captcha_error" class="text-danger"></span>
                 </div>
             </div>
-          <div class="pass"><a href="./forget-password.php">Login</a></div>
+          <div class="pass"><a href="./forget-password">Login</a></div>
           <div class="row button">
             <input id="login" type="submit" disabled name="forget-pass" >
           </div>
-          <div class="signup-link">Not a member? <a href="./register.php">Signup now</a></div>
+          <div class="signup-link">Not a member? <a href="./register">Signup now</a></div>
         </form>
       </div>
     </div>

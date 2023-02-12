@@ -12,7 +12,7 @@ for($i=0;$i<count($result);$i++){
 ?>
 <div class="main-container">
     <div class="sub-container">
-        <a href="main.php?id=<?php print_r($result[$i]['park_id']); ?>">
+        <a href="main?id=<?php print_r($result[$i]['park_id']); ?>">
             
             <img src=<?php print_r($result[$i]['image']); ?> class="image-11">
         </a>
