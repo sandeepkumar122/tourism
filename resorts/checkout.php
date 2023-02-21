@@ -12,7 +12,7 @@
         }
         // echo "<pre>";
         // print_r($_POST);
-        require("./header");
+        require("./header.php");
 
         if (!isset($_SESSION['email']) && !isset($_SESSION['logged_in'])) {
             header('Location: ../register');
@@ -150,7 +150,7 @@
 
                         console.log(response);
                         $.ajax({
-                            url: 'processing.php',
+                            url: 'processing',
                             type: 'post',
                             dataType: 'json',
                             data: {
@@ -169,7 +169,7 @@
 
                                 if (msg.success == "1") {
 
-                                    window.location.href = 'thank-you.php';
+                                    window.location.href = 'thank-you';
                                 } else {
                                     alert("error");
                                 }

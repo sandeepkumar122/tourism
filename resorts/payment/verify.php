@@ -64,7 +64,7 @@ if(strlen($date_of_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( 
                 alert("working");
                 console.log(response);
                 $.ajax({
-                url: 'processing.php',
+                url: 'processing',
                 type: 'post',
                 dataType: 'json',
                 data: {
@@ -77,7 +77,7 @@ if(strlen($date_of_book)>0 && ($adult>0 || $child>0) && (strlen($phone)>0) && ( 
                     if(msg.success=="1"){
                    
                         alert("from inside successs");
-                        window.location.href = 'thank-you.php';                                                                                                                                                    
+                        window.location.href = 'thank-you';                                                                                                                                                    
                     }else{
                         alert("error");
                     }

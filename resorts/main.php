@@ -13,7 +13,7 @@
             header('Location:../login');
             exit;
         }
-        require("./header");
+        require("./header.php");
 
         $id = $_GET['id'];
         if (isset($id) && strlen($id) > 0) {

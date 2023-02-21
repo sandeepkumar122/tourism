@@ -22,7 +22,7 @@ if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
           <a class="btn-item" href="https://www.w3docs.com/quiz/#">Select Quiz</a>
         </div>
       </div> -->
-      <form action="./main.php" method="POST">
+      <form action="./main" method="POST">
         <div class="title">
           <i class="fas fa-pencil-alt"></i> 
           <h2>Register here</h2>

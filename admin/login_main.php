@@ -6,7 +6,7 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
     $find_query="select * from parks where park_email='$username'";
     $db_query=pg_query($connect,$find_query);
     if(pg_num_rows($db_query)<1){
-        $url = './login.php';
+        $url = './login';
         echo "<script LANGUAGE='JavaScript'>alert('User Does Not Exist!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }
@@ -19,9 +19,9 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
         $_SESSION['park_logged_in']=true;
         $_SESSION['park_name']=$get_data['park_name'];
         $_SESSION['park_id']=$get_data['id'];
-        header('Location:./dashboard.php');
+        header('Location:./dashboard');
     }else{
-        $url = './login.php';
+        $url = './login';
         echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }

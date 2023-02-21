@@ -13,7 +13,7 @@ if(isset($_GET['booking_id']) && strlen($_GET['booking_id'])>1 && isset($_GET['a
         $update_query="update paid_booking set status=-1,canceled=true where booking_id='$booking_id'";
         $get_park_query = pg_query($connect, $update_query); 
         if($get_park_query){
-            $url="./reports.php";
+            $url="./reports";
             echo "<script LANGUAGE='JavaScript'>alert('Booking Has Been Cancelled!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -26,7 +26,7 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
     $find_query="select * from parks where park_email='$username'";
     $db_query=pg_query($connect,$find_query);
     if(pg_num_rows($db_query)<1){
-        $url = './login.php';
+        $url = './login';
         echo "<script LANGUAGE='JavaScript'>alert('User Does Not Exist!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }
@@ -39,9 +39,9 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
         $_SESSION['park_logged_in']=true;
         $_SESSION['park_name']=$get_data['park_name'];
         $_SESSION['park_id']=$get_data['id'];
-        header('Location:./dashboard.php');
+        header('Location:./dashboard');
     }else{
-        $url = './login.php';
+        $url = './login';
         echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }
@@ -70,11 +70,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $update="update prices_adult set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
         $db_query_update=pg_query($connect,$update);
         if($db_query_update){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -82,11 +82,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $insert="insert into prices_adult(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
         $db_query_insert=pg_query($connect,$insert);
         if($db_query_insert){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -117,11 +117,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $update="update prices_child set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
         $db_query_update=pg_query($connect,$update);
         if($db_query_update){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -129,11 +129,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $insert="insert into prices_child(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
         $db_query_insert=pg_query($connect,$insert);
         if($db_query_insert){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -164,11 +164,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $update="update prices_group_adult set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
         $db_query_update=pg_query($connect,$update);
         if($db_query_update){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -176,11 +176,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $insert="insert into prices_group_adult(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
         $db_query_insert=pg_query($connect,$insert);
         if($db_query_insert){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -211,11 +211,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $update="update prices_group_child set monday=$monday,tuesday=$tuesday,wednesday=$wednesday,thursday=$thursday,friday=$friday,saturday=$saturday,sunday=$sunday";
         $db_query_update=pg_query($connect,$update);
         if($db_query_update){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -223,11 +223,11 @@ if(isset($_POST['Monday']) && strlen($_POST['Monday'])>0 && isset($_POST['Sunday
         $insert="insert into prices_group_child(park_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday) values($park_id,$monday,$tuesday,$wednesday,$thursday,$friday,$saturday,$sunday)";
         $db_query_insert=pg_query($connect,$insert);
         if($db_query_insert){
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Prices Updated Successfully..'); window.location.href= '" . $url . "'; </script>";
             exit();
         }else{
-            $url = './update-price.php';
+            $url = './update-price';
             echo "<script LANGUAGE='JavaScript'>alert('Invalid Password!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }

@@ -8,7 +8,7 @@ include '../conn.php';
 <html>
     <body>
     <h1>Add new Park</h1>
-    <form action="./add-resorts-main.php" method="POST" enctype="multipart/form-data">
+    <form action="./add-resorts-main" method="POST" enctype="multipart/form-data">
       <div class="container">
           <label><b>Park Name</b></label>
           <input type="text" placeholder="Enter Name" name="park_name" required>

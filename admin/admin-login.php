@@ -19,7 +19,7 @@ require('../conn.php');
     <div class="container">
       <div class="wrapper">
         <div class="title"><span>Login Form</span></div>
-        <form action="./main.php" method="POST">
+        <form action="./main" method="POST">
           <div class="row">
             <i class="fas fa-user"></i>
             <input type="text" name="username" placeholder="Email or Phone" required>

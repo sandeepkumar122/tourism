@@ -2,7 +2,7 @@
 include './headers.php';
 require('../conn.php');
 if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
-  header('Location:./admin-login.php');
+  header('Location:./admin-login');
 }
 $select_water="select * from parks where park_status=1";
 $select_theme="select * from parks where park_status=2";

@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
     session_start();
   }
 if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
-    $url = './login.php';
+    $url = './login';
     echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
     exit();
 }
@@ -47,7 +47,7 @@ if (pg_num_rows($db_query_select) > 0) {
         <h1>Adult</h1>
         <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p>
         <h2>Prices On Different Days For Adult</h2>
-        <form action="./main.php" method="post">
+        <form action="./main" method="post">
             <table id="customers">
                 <tr>
                     <th>Monday</th>
@@ -79,7 +79,7 @@ if (pg_num_rows($db_query_select) > 0) {
         <h1>Group Adult</h1>
         <!-- <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p> -->
         <!-- <h2>Prices On Different Days For Group Adult</h2> -->
-        <form action="./main.php" method="post">
+        <form action="./main" method="post">
             <table id="customers">
                 <tr>
                     <th>Monday</th>
@@ -109,7 +109,7 @@ if (pg_num_rows($db_query_select) > 0) {
         <h1>Child</h1>
         <!-- <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p> -->
         <!-- <h2>Prices On Different Days For Child</h2> -->
-        <form action="./main.php" method="post">
+        <form action="./main" method="post">
             <table id="customers">
                 <tr>
                     <th>Monday</th>
@@ -139,7 +139,7 @@ if (pg_num_rows($db_query_select) > 0) {
         <h1>Group Child</h1>
         <!-- <p>W3docs provides free learning materials for programming languages like HTML, CSS, Java Script, PHP etc.</p> -->
         <!-- <h2>Prices On Different Days For Child</h2> -->
-        <form action="./main.php" method="post">
+        <form action="./main" method="post">
             <table id="customers">
                 <tr>
                     <th>Monday</th>

@@ -20,7 +20,7 @@ require("./header.php");
       <th>Email</th>
       <th>Payment ID</th>
       <th>Amount</th>
-      <th>Resort ID</th>
+      <!-- <th>Resort ID</th> -->
       <th>Date Of Booking</th>
       <th>Number Of Adult</th>
       <th>Number Of Child</th>
@@ -53,7 +53,7 @@ require("./header.php");
           <td><?php echo $result[$i]['email']; ?></td>
           <td><?php echo $result[$i]['payment_id']; ?></td>
           <td><?php echo $result[$i]['amount']; ?></td>
-          <td><?php echo $result[$i]['resort_id']; ?></td>
+          <!-- <td><?php //echo $result[$i]['resort_id']; ?></td> -->
           <td><?php echo $result[$i]['date_of_book']; ?></td>
           <td><?php echo $result[$i]['num_adult']; ?></td>
           <td><?php echo $result[$i]['num_child']; ?></td>
@@ -61,7 +61,7 @@ require("./header.php");
           <td><?php echo $result[$i]['phone']; ?></td>
           <td><?php echo $result[$i]['day_of_booking']; ?></td>
           <td><?php if ($result[$i]['status'] > 0) { ?> <a href="./action?book=<?php echo $result[$i]['booking_id']; ?>">View Ticket</a> <?php } else {
-                                                                                                                                          echo "Canceled";
+                                                                                                                                          echo "Cancelled";
                                                                                                                                         } ?></td>
           <td><?php echo check_status($result[$i]['status']) ?></td>
         </tr>

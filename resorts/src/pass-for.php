@@ -22,11 +22,11 @@ if (isset($_POST['forget-pass'])) {
                 $update_query = "update forget_password set last_generated=now() where email='$email'";
                 $pg_update_query = pg_query($connect, $update_query);
 
-                $url = "../../forget-password.php";
+                $url = "../../forget-password";
                 echo "<script LANGUAGE='JavaScript'>alert('Forget Password Link is sent to your Email!!'); window.location.href= '" . $url . "'; </script>";
                 exit();
             } else {
-                $url = "../../forget-password.php";
+                $url = "../../forget-password";
                 echo "<script LANGUAGE='JavaScript'>alert('User Not Found With Given Email, Please check Your Mail!!'); window.location.href= '" . $url . "'; </script>";
                 exit();
             }
@@ -47,7 +47,7 @@ if (isset($_POST['change-pass'])) {
 
     if ($pg_update_query) {
         unset($_SESSION['email']);
-        $url = "../../login.php";
+        $url = "../../login";
         echo "<script LANGUAGE='JavaScript'>alert('Password Reset Successfull!! Please Login.'); window.location.href= '" . $url . "'; </script>";
         exit();
     }

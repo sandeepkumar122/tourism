@@ -148,7 +148,7 @@ include '../functions/encyptDecrypt.php';
     }).data("ui-autocomplete")._renderItem = function(ul, item) {
      
       let txt = String(item.value).replace(new RegExp(this.term, "gi"), "<b>$&</b>");
-      let element="<a href=./main.php?id="+arr[item.value]+">" + txt + "</a>";
+      let element="<a href=./main?id="+arr[item.value]+">" + txt + "</a>";
       return $("<li></li>")
         .data("ui-autocomplete-item", item)
         // .append("<a href='./main.php?id='"+arr[item.value]+">" + txt + "</a>")

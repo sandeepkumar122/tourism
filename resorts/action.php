@@ -14,7 +14,7 @@ if (isset($_SESSION['email'])) {
         <div class="booking-part">
             <div class="inside-booking">
     
-                <form method="post" action="functions.php">
+                <form method="post" action="functions">
                 <div>
                         <label>Booking ID</label><br>
                         <input type="text" value="<?php echo $result[$i]['booking_id']; ?>" id="bookingDate" readonly name="booking_id" class="input-tag"><br>

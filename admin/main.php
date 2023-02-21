@@ -1,5 +1,5 @@
 <?php
-include '../conn.php';
+include '../conn';
 if(!isset($_SESSION)) 
 { 
     session_start(); 
@@ -11,7 +11,7 @@ if(isset($_GET['booking_id']) && strlen($_GET['booking_id']) && isset($_GET['act
         $update_query="update paid_booking set status=-2,canceled=true where booking_id='$booking_id'";
         $get_park_query = pg_query($connect, $update_query); 
         if($get_park_query){
-            $url="./view-booking.php";
+            $url="./view-booking";
             echo "<script LANGUAGE='JavaScript'>alert('Booking Has Been Cancelled!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
@@ -27,11 +27,11 @@ if(isset($_POST['email']) && strlen($_POST['email'])>0 && isset($_POST['password
     $insert_query="insert into admin(username,password,salt,level_permission) values('$email','$password','$salt',1)";
     $insert_data = pg_query($connect, $insert_query);
     if($insert_data){
-        $url="./dashboard.php";
+        $url="./dashboard";
         echo "<script LANGUAGE='JavaScript'>alert('New Admin Added SuccessFully!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }else{
-        $url="./dashboard.php";
+        $url="./dashboard";
         echo "<script LANGUAGE='JavaScript'>alert('Something Went Wrong!!'); window.location.href= '" . $url . "'; </script>";
         exit();
     }
@@ -51,14 +51,14 @@ if(isset($_POST['username']) && strlen($_POST['username'])>0 && isset($_POST['pa
             $_SESSION['admin_logged_in']=true;
             $_SESSION['admin_email']=$data['username'];
             $_SESSION['permission']=$data['level_permission'];
-            header('Location:./dashboard.php');
+            header('Location:./dashboard');
         }else{
-            $url="./create-admin.php";
+            $url="./create-admin";
             echo "<script LANGUAGE='JavaScript'>alert('Password Does Not Match!!'); window.location.href= '" . $url . "'; </script>";
             exit();
         }
     }else{
-            $url="./create-admin.php";
+            $url="./create-admin";
             echo "<script LANGUAGE='JavaScript'>alert('User Does Not Exist!!'); window.location.href= '" . $url . "'; </script>";
             exit();
     }

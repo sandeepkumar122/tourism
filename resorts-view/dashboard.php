@@ -6,7 +6,7 @@ if (!isset($_SESSION)) {
 // echo "<pre>";
 // print_r($_SESSION);
 if(!isset($_SESSION['email']) && strlen($_SESSION['email'])<1 && !isset($_SESSION['park_logged_in']) && !$_SESSION['park_logged_in']==true){
-    $url = './login.php';
+    $url = './login';
     echo "<script LANGUAGE='JavaScript'>alert('Please Login first!!!'); window.location.href= '" . $url . "'; </script>";
     exit();
 }
@@ -108,8 +108,8 @@ $park_data=pg_fetch_assoc($select_park_data);
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="well">
-                            <p><a href="./reports.php">View Today Booking</a></p>
-                            <p><a href="./update-price.php">Update Prices</a></p>
+                            <p><a href="./reports">View Today Booking</a></p>
+                            <p><a href="./update-price">Update Prices</a></p>
                             <!-- <p><a href="./view-resorts.php">View Resorts Info</a></p> -->
                         </div>
                     </div>

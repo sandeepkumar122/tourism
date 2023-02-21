@@ -1,7 +1,7 @@
 <?php
 include './headers.php';
 if(!isset($_SESSION['admin_logged_in']) && !isset($_SESSION['admin_email'])){
-    header('Location:./admin-login.php');
+    header('Location:./admin-login');
  }
  $select_user="select count(*) as total from user_data";
  $select_user_data = pg_query($connect, $select_user);
@@ -96,9 +96,9 @@ $park_data=pg_fetch_assoc($select_park_data);
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="well">
-                            <p><a href="./add-resorts.php">Add New Resorts</a></p>
-                            <p><a href="./view-booking.php">View Bookings</a></p>
-                            <p><a href="./view-resorts.php">View Resorts</a></p>
+                            <p><a href="./add-resorts">Add New Resorts</a></p>
+                            <p><a href="./view-booking">View Bookings</a></p>
+                            <p><a href="./view-resorts">View Resorts</a></p>
                         </div>
                     </div>
                     <!-- <div class="col-sm-4">
